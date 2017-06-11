@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --progress --watch",
-	"serve": "http-server dist -o"
+    "serve": "http-server dist -o"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,8 @@
     "webpack": "^2.6.1"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.65",
+    "lodash": "^4.17.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
   }

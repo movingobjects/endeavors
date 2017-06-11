@@ -78,12 +78,29 @@ module.exports = React;
 
 "use strict";
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-function App() {
-    return (React.createElement("h1", null, "\u2639"));
-}
-exports.App = App;
+var App = (function (_super) {
+    __extends(App, _super);
+    function App() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    App.prototype.render = function () {
+        return (React.createElement("h1", null, "\u2639"));
+    };
+    return App;
+}(React.Component));
+exports.default = App;
 
 
 /***/ }),
@@ -101,7 +118,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(7)(content, options);
+var update = __webpack_require__(8)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -134,7 +151,7 @@ var React = __webpack_require__(0);
 var ReactDOM = __webpack_require__(3);
 __webpack_require__(2);
 var App_1 = __webpack_require__(1);
-ReactDOM.render(React.createElement(App_1.App, null), document.getElementById("app"));
+ReactDOM.render(React.createElement(App_1.default, null), document.getElementById("app"));
 
 
 /***/ }),
@@ -146,7 +163,7 @@ exports = module.exports = __webpack_require__(6)(undefined);
 
 
 // module
-exports.push([module.i, "h1 {\n  font-size: 100px; }\n", ""]);
+exports.push([module.i, "h1 {\n  margin: 0px;\n  font-size: 100px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%); }\n", ""]);
 
 // exports
 
@@ -234,7 +251,8 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 7 */
+/* 7 */,
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -280,7 +298,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(8);
+var	fixUrls = __webpack_require__(9);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -593,7 +611,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 
