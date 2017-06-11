@@ -90,13 +90,72 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
+var CAT_NAMES = ["Social", "Work", "Play", "Well-being"];
+var categories = CAT_NAMES.map(function (name, i) { return ({
+    id: i,
+    label: name
+}); });
+var endeavors = [
+    {
+        id: 0,
+        label: "Meeting new people",
+        category: 0
+    },
+    {
+        id: 1,
+        label: "Keeping life organized",
+        category: 1
+    },
+    {
+        id: 2,
+        label: "Experiencing nature",
+        category: 2
+    },
+    {
+        id: 3,
+        label: "Nurturing physical well-being",
+        category: 3
+    },
+];
+var activities = [
+    {
+        id: 0,
+        label: "Camping",
+        endeavors: [
+            {
+                id: 2,
+                weight: 3
+            },
+            {
+                id: 3,
+                weight: 1
+            }
+        ]
+    },
+    {
+        id: 1,
+        label: "Journaling",
+        endeavors: [
+            {
+                id: 1,
+                weight: 3
+            }
+        ]
+    },
+];
 var App = (function (_super) {
     __extends(App, _super);
     function App() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     App.prototype.render = function () {
-        return (React.createElement("h1", null, "\u2639"));
+        return (React.createElement("table", null,
+            React.createElement("thead", null,
+                React.createElement("tr", null,
+                    React.createElement("th", null, "Activity"),
+                    endeavors.map(function (endeavor) { return (React.createElement("th", { key: endeavor.id }, endeavor.label)); }))),
+            React.createElement("tbody", null, activities.map(function (activity) { return (React.createElement("tr", { key: activity.id },
+                React.createElement("td", null, activity.label))); }))));
     };
     return App;
 }(React.Component));
@@ -118,7 +177,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(8)(content, options);
+var update = __webpack_require__(7)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -163,7 +222,7 @@ exports = module.exports = __webpack_require__(6)(undefined);
 
 
 // module
-exports.push([module.i, "h1 {\n  margin: 0px;\n  font-size: 100px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%); }\n", ""]);
+exports.push([module.i, "body {\n  font-family: sans-serif; }\n\ntable {\n  border-spacing: 0;\n  border-collapse: collapse; }\n\nth,\ntd {\n  border: 1px solid #ccc;\n  padding: 5px 10px; }\n", ""]);
 
 // exports
 
@@ -251,8 +310,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 7 */,
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -298,7 +356,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(9);
+var	fixUrls = __webpack_require__(8);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -611,7 +669,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports) {
 
 
