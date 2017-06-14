@@ -1,7 +1,7 @@
 # Endeavors
 
-Endeavors is a values & activities tracking app that lets you:
+Endeavors helps you track and evaluate how you're spending your time.
 
-- Link **activities** (ways you spend your time) with **values** (guiding principles for how live your life), using a weighted point system
+- Link **activities** (e.g., bicycle riding, napping, etc) with **endeavors** (e.g., experiencing nature, spending time with friends, etc), using a weighted point system
 - Track the activities you act on each day
-- View reports/visualizations to gain insights on how you're spending your time and how your actions match up with your values
+- View reports/visualizations to evaluate how you're spending your time and be encouraged to pursue the things that matter to you
