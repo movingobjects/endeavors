@@ -10,11 +10,11 @@ interface Category {
 interface Endeavor {
 	id:number;
 	label:string;
-	category:number; // id from Category
+	category_id:number;
 }
 
 interface ActivityEndeavor {
-	id:number; // id from Endeavor
+	endeavor_id:number;
 	weight:number;
 }
 
@@ -35,22 +35,22 @@ const endeavors:Endeavor[] = [
 	{
 		id: 0,
 		label: "Meeting new people",
-		category: 0
+		category_id: 0
 	},
 	{
 		id: 1,
 		label: "Keeping life organized",
-		category: 1
+		category_id: 1
 	},
 	{
 		id: 2,
 		label: "Experiencing nature",
-		category: 2
+		category_id: 2
 	},
 	{
 		id: 3,
 		label: "Nurturing physical well-being",
-		category: 3
+		category_id: 3
 	},
 ];
 
@@ -60,11 +60,11 @@ const activities:Activity[] = [
 		label: "Camping",
 		endeavors: [
 			{
-				id: 2,
+				endeavor_id: 2,
 				weight: 3
 			},
 			{
-				id: 3,
+				endeavor_id: 3,
 				weight: 1
 			}
 		]
@@ -74,17 +74,17 @@ const activities:Activity[] = [
 		label: "Journaling",
 		endeavors: [
 			{
-				id: 1,
+				endeavor_id: 1,
 				weight: 3
 			}
 		]
 	},
 ];
 
-
+// const endeavorsById = _.keyBy(endeavors, endeavor => endeavor.id);
+// const activitiesById = _.keyBy(activities, activity => activity.id);
 
 export default class App extends React.Component<undefined, undefined> {
-
 	render() {
 		return (
 			<table>
@@ -101,12 +101,11 @@ export default class App extends React.Component<undefined, undefined> {
 						<tr key={activity.id}>
 							<td>{activity.label}</td>
 							{endeavors.map((endeavor) => (
-								<td>
-									{activity.endeavors.map((activityEndeavor) => (
-										<span>
-										{activityEndeavor.id == endeavor.id && 
-											<span>{activityEndeavor.weight}</span>
-										}
+								<td key={endeavor.id}>
+									{activity.endeavors.map((ae) => (
+										ae.endeavor_id === endeavor.id &&
+										<span key={ae.endeavor_id}>
+											{ae.weight}
 										</span>
 									))}
 								</td>
@@ -117,7 +116,4 @@ export default class App extends React.Component<undefined, undefined> {
 			</table>
 		);
 	}
-
 }
-
-
