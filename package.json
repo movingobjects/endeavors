@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Endeavors is a values & activities tracking app that lets you:",
   "main": "index.js",
-  "engine": {
+  "engines": {
     "node": "^6.11.0",
     "npm": "^3.10.10"
   },
