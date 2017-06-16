@@ -103,8 +103,8 @@ export default class App extends React.Component<undefined, undefined> {
 							{endeavors.map((endeavor) => (
 								<td key={endeavor.id}>
 									{activity.endeavors.map((ae) => (
-										ae.endeavor_id == endeavor.id &&
-										<span key="ae.endeavor_id">
+										ae.endeavor_id === endeavor.id &&
+										<span key={ae.endeavor_id}>
 											{ae.weight}
 										</span>
 									))}

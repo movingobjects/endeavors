@@ -158,8 +158,8 @@ var App = (function (_super) {
                     endeavors.map(function (endeavor) { return (React.createElement("th", { key: endeavor.id }, endeavor.label)); }))),
             React.createElement("tbody", null, activities.map(function (activity) { return (React.createElement("tr", { key: activity.id },
                 React.createElement("td", null, activity.label),
-                endeavors.map(function (endeavor) { return (React.createElement("td", { key: endeavor.id }, activity.endeavors.map(function (ae) { return (ae.endeavor_id == endeavor.id &&
-                    React.createElement("span", { key: "ae.endeavor_id" }, ae.weight)); }))); }))); }))));
+                endeavors.map(function (endeavor) { return (React.createElement("td", { key: endeavor.id }, activity.endeavors.map(function (ae) { return (ae.endeavor_id === endeavor.id &&
+                    React.createElement("span", { key: ae.endeavor_id }, ae.weight)); }))); }))); }))));
     };
     return App;
 }(React.Component));
