@@ -99,22 +99,22 @@ var endeavors = [
     {
         id: 0,
         label: "Meeting new people",
-        category: 0
+        category_id: 0
     },
     {
         id: 1,
         label: "Keeping life organized",
-        category: 1
+        category_id: 1
     },
     {
         id: 2,
         label: "Experiencing nature",
-        category: 2
+        category_id: 2
     },
     {
         id: 3,
         label: "Nurturing physical well-being",
-        category: 3
+        category_id: 3
     },
 ];
 var activities = [
@@ -123,11 +123,11 @@ var activities = [
         label: "Camping",
         endeavors: [
             {
-                id: 2,
+                endeavor_id: 2,
                 weight: 3
             },
             {
-                id: 3,
+                endeavor_id: 3,
                 weight: 1
             }
         ]
@@ -137,12 +137,14 @@ var activities = [
         label: "Journaling",
         endeavors: [
             {
-                id: 1,
+                endeavor_id: 1,
                 weight: 3
             }
         ]
     },
 ];
+// const endeavorsById = _.keyBy(endeavors, endeavor => endeavor.id);
+// const activitiesById = _.keyBy(activities, activity => activity.id);
 var App = (function (_super) {
     __extends(App, _super);
     function App() {
@@ -156,8 +158,8 @@ var App = (function (_super) {
                     endeavors.map(function (endeavor) { return (React.createElement("th", { key: endeavor.id }, endeavor.label)); }))),
             React.createElement("tbody", null, activities.map(function (activity) { return (React.createElement("tr", { key: activity.id },
                 React.createElement("td", null, activity.label),
-                endeavors.map(function (endeavor) { return (React.createElement("td", null, activity.endeavors.map(function (activityEndeavor) { return (React.createElement("span", null, activityEndeavor.id == endeavor.id &&
-                    React.createElement("span", null, activityEndeavor.weight))); }))); }))); }))));
+                endeavors.map(function (endeavor) { return (React.createElement("td", { key: endeavor.id }, activity.endeavors.map(function (ae) { return (ae.endeavor_id == endeavor.id &&
+                    React.createElement("span", { key: "ae.endeavor_id" }, ae.weight)); }))); }))); }))));
     };
     return App;
 }(React.Component));

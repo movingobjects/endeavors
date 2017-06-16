@@ -3,10 +3,15 @@
   "version": "0.1.0",
   "description": "Endeavors is a values & activities tracking app that lets you:",
   "main": "index.js",
+  "engine": {
+    "node": "^6.11.0",
+    "npm": "^3.10.10"
+  },
   "scripts": {
     "build": "webpack",
-    "watch": "webpack --progress --watch",
-    "serve": "http-server dist -o"
+    "clean": "rm -rf dist/*",
+    "serve": "http-server dist -o",
+    "watch": "webpack --progress --watch"
   },
   "repository": {
     "type": "git",
