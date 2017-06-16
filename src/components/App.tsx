@@ -91,21 +91,28 @@ export default class App extends React.Component<undefined, undefined> {
 				<thead>
 					<tr>
 						<th>Activity</th>
-						{
-							endeavors.map((endeavor) => (
-								<th key={endeavor.id}>{endeavor.label}</th>
-							))
-						}
+						{endeavors.map((endeavor) => (
+							<th key={endeavor.id}>{endeavor.label}</th>
+						))}
 					</tr>
 				</thead>
 				<tbody>
-					{
-						activities.map((activity) => (
-							<tr key={activity.id}>
-								<td>{activity.label}</td>
-							</tr>
-						))
-					}
+					{activities.map((activity) => (
+						<tr key={activity.id}>
+							<td>{activity.label}</td>
+							{endeavors.map((endeavor) => (
+								<td>
+									{activity.endeavors.map((activityEndeavor) => (
+										<span>
+										{activityEndeavor.id == endeavor.id && 
+											<span>{activityEndeavor.weight}</span>
+										}
+										</span>
+									))}
+								</td>
+							))}
+						</tr>
+					))}
 				</tbody>
 			</table>
 		);

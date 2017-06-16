@@ -155,7 +155,9 @@ var App = (function (_super) {
                     React.createElement("th", null, "Activity"),
                     endeavors.map(function (endeavor) { return (React.createElement("th", { key: endeavor.id }, endeavor.label)); }))),
             React.createElement("tbody", null, activities.map(function (activity) { return (React.createElement("tr", { key: activity.id },
-                React.createElement("td", null, activity.label))); }))));
+                React.createElement("td", null, activity.label),
+                endeavors.map(function (endeavor) { return (React.createElement("td", null, activity.endeavors.map(function (activityEndeavor) { return (React.createElement("span", null, activityEndeavor.id == endeavor.id &&
+                    React.createElement("span", null, activityEndeavor.weight))); }))); }))); }))));
     };
     return App;
 }(React.Component));
