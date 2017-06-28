@@ -75,10 +75,46 @@ const activities:Activity[] = [
 		endeavors: [
 			{
 				endeavor_id: 1,
+				weight: 2
+			}
+		]
+	},
+	{
+		id: 2,
+		label: "Colorizing",
+		endeavors: [
+			{
+				endeavor_id: 1,
+				weight: 1
+			},
+			{
+				endeavor_id: 2,
+				weight: 2
+			},
+			{
+				endeavor_id: 3,
 				weight: 3
 			}
 		]
 	},
+	{
+		id: 3,
+		label: "Anti-colorizing",
+		endeavors: [
+			{
+				endeavor_id: 0,
+				weight: 3
+			},
+			{
+				endeavor_id: 1,
+				weight: 2
+			},
+			{
+				endeavor_id: 2,
+				weight: 1
+			}
+		]
+	}
 ];
 
 // const endeavorsById = _.keyBy(endeavors, endeavor => endeavor.id);
@@ -99,17 +135,19 @@ export default class App extends React.Component<undefined, undefined> {
 				<tbody>
 					{activities.map((activity) => (
 						<tr key={activity.id}>
-							<td>{activity.label}</td>
-							{endeavors.map((endeavor) => (
-								<td key={endeavor.id}>
-									{activity.endeavors.map((ae) => (
-										ae.endeavor_id === endeavor.id &&
-										<span key={ae.endeavor_id}>
-											{ae.weight}
-										</span>
-									))}
-								</td>
-							))}
+							<th>{activity.label}</th>
+							{endeavors.map((endeavor) => {
+
+								const ae	= _.find(activity.endeavors, (ae) => ae.endeavor_id === endeavor.id);
+
+								return (
+									<td key={endeavor.id} className={ ae && "weight-" + ae.weight }>
+										{ae && ae.weight}
+									</td>
+								);
+
+							})}
+
 						</tr>
 					))}
 				</tbody>
@@ -117,3 +155,5 @@ export default class App extends React.Component<undefined, undefined> {
 		);
 	}
 }
+
+

@@ -1,5 +1,16 @@
+// Vars
+/////////////////////////////////////////////
+
+$categoryColor: #9c0;
+
+
+// Elements
+/////////////////////////////////////////////
+
 body {
-	font-family: sans-serif;
+	font-family: 'Roboto Mono', monospace;
+	font-size: 13px;
+	margin: 25px;
 }
 
 
@@ -11,5 +22,40 @@ table {
 th,
 td {
 	border: 1px solid #ccc;
-	padding: 5px 10px;
+	padding: 10px 10px;
+	width: 100px;
+
+	&:first-child {
+		width: 200px;
+	}
+
+}
+
+thead th {
+	background-color: #eee;
+	color: #666;
+}
+
+tbody th:first-child {
+	text-align: left;
+	font-weight: normal;
+	color: #999;
+}
+
+td {
+	text-align: center;
+
+	&.weight-1 {
+		background-color: transparentize($categoryColor, 0.85);
+		color: darken($categoryColor, 0%);
+	}
+	&.weight-2 {
+		background-color: transparentize($categoryColor, 0.5);
+		color: darken($categoryColor, 5%);
+	}
+	&.weight-3 {
+		background-color: $categoryColor;
+		color: darken($categoryColor, 10%);
+	}
+
 }
