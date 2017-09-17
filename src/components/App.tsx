@@ -1,6 +1,11 @@
 
+// Imports
+
 import * as React from 'react';
 import * as _ from 'lodash';
+
+
+// Interfaces
 
 interface Category {
   id:number;
@@ -24,7 +29,15 @@ interface Activity {
   endeavors:ActivityEndeavor[];
 }
 
-const CAT_NAMES:string[] = [ 'Social', 'Work', 'Play', 'Well-being' ];
+
+// Constants
+
+const CAT_NAMES:string[] = [
+  'Social',
+  'Work',
+  'Play',
+  'Well-being'
+];
 
 const categories:Category[] = CAT_NAMES.map((name:string, i:number):Category => ({
   id: i,
@@ -124,112 +137,71 @@ const activities:Activity[] = [
     id: 0,
     label: 'Camping',
     endeavors: [
-      {
-        endeavor_id: 0,
-        weight: 2
-      },
-      {
-        endeavor_id: 6,
-        weight: 2
-      },
-      {
-        endeavor_id: 7,
-        weight: 3
-      },
-      {
-        endeavor_id: 8,
-        weight: 3
-      },
-      {
-        endeavor_id: 13,
-        weight: 3
-      },
+      { endeavor_id:  0, weight: 2 },
+      { endeavor_id:  6, weight: 2 },
+      { endeavor_id:  7, weight: 3 },
+      { endeavor_id:  8, weight: 3 },
+      { endeavor_id: 13, weight: 3 },
     ]
   },
   {
     id: 1,
     label: 'Journaling',
     endeavors: [
-      {
-        endeavor_id: 4,
-        weight: 3
-      },
-      {
-        endeavor_id: 12,
-        weight: 1
-      },
-      {
-        endeavor_id: 13,
-        weight: 3
-      },
+      { endeavor_id:  4, weight: 3 },
+      { endeavor_id: 12, weight: 1 },
+      { endeavor_id: 13, weight: 3 },
     ]
   },
   {
     id: 2,
     label: 'Teaching',
     endeavors: [
-      {
-        endeavor_id: 1,
-        weight: 1
-      },
-      {
-        endeavor_id: 2,
-        weight: 2
-      },
-      {
-        endeavor_id: 3,
-        weight: 2
-      },
-      {
-        endeavor_id: 5,
-        weight: 1
-      },
-      {
-        endeavor_id: 7,
-        weight: 1
-      },
-      {
-        endeavor_id: 10,
-        weight: 3
-      },
+      { endeavor_id:  1, weight: 1 },
+      { endeavor_id:  2, weight: 2 },
+      { endeavor_id:  3, weight: 2 },
+      { endeavor_id:  5, weight: 1 },
+      { endeavor_id:  7, weight: 1 },
+      { endeavor_id: 10, weight: 3 },
     ]
   },
   {
     id: 3,
     label: 'Playing soccer',
     endeavors: [
-      {
-        endeavor_id: 0,
-        weight: 3
-      },
-      {
-        endeavor_id: 6,
-        weight: 3
-      },
-      {
-        endeavor_id: 7,
-        weight: 1
-      },
-      {
-        endeavor_id: 10,
-        weight: 3
-      },
-      {
-        endeavor_id: 14,
-        weight: 3
-      },
-      {
-        endeavor_id: 15,
-        weight: 2
-      },
+      { endeavor_id:  0, weight: 3 },
+      { endeavor_id:  6, weight: 3 },
+      { endeavor_id:  7, weight: 1 },
+      { endeavor_id: 10, weight: 3 },
+      { endeavor_id: 14, weight: 3 },
+      { endeavor_id: 15, weight: 2 },
     ]
   }
 ];
 
-// const endeavorsById = _.keyBy(endeavors, endeavor => endeavor.id);
-// const activitiesById = _.keyBy(activities, activity => activity.id);
+
+// Class
 
 export default class App extends React.Component<undefined, undefined> {
+
+  // Constructor
+
+  constructor() {
+    super();
+  }
+
+
+  // Methods
+
+  getEndeavorsByCategory(category:Category) {
+    return _.filter(endeavors, (e) => (
+      e.category_id === category.id
+    ));
+  }
+
+
+  // React
+
   render() {
     return (
       <table>
@@ -238,7 +210,7 @@ export default class App extends React.Component<undefined, undefined> {
             <th></th>
             {categories.map((category) => {
 
-              let catEnds    = this._getEndeavorsByCategory(category),
+              let catEnds    = this.getEndeavorsByCategory(category),
                 count    = catEnds.length;
 
               if (count) {
@@ -253,7 +225,7 @@ export default class App extends React.Component<undefined, undefined> {
             <th>Activity</th>
             {categories.map((category) => {
 
-              let catEnds    = this._getEndeavorsByCategory(category);
+              let catEnds    = this.getEndeavorsByCategory(category);
 
               return catEnds.map((endeavor) => (
                 <th key={endeavor.id}>{endeavor.label}</th>
@@ -269,7 +241,7 @@ export default class App extends React.Component<undefined, undefined> {
 
               {categories.map((category) => {
 
-                let catEnds    = this._getEndeavorsByCategory(category);
+                let catEnds    = this.getEndeavorsByCategory(category);
 
                 return catEnds.map((endeavor) => {
 
@@ -292,12 +264,6 @@ export default class App extends React.Component<undefined, undefined> {
         </tbody>
       </table>
     );
-  }
-
-  _getEndeavorsByCategory(category:Category) {
-    return _.filter(endeavors, (e) => (
-      e.category_id === category.id
-    ));
   }
 
 }
