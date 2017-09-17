@@ -203,19 +203,25 @@ export default class App extends React.Component<undefined, undefined> {
   // React
 
   render() {
+
     return (
       <table>
+
         <thead>
           <tr>
             <th></th>
             {categories.map((category) => {
 
-              let catEnds    = this.getEndeavorsByCategory(category),
-                count    = catEnds.length;
+              let catEnds = this.getEndeavorsByCategory(category),
+                  count   = catEnds.length;
 
               if (count) {
                 return (
-                  <th key={category.id} colSpan={count}>{category.label}</th>
+                  <th
+                    key={category.id}
+                    colSpan={count} >
+                    {category.label}
+                  </th>
                 );
               }
 
@@ -225,15 +231,19 @@ export default class App extends React.Component<undefined, undefined> {
             <th>Activity</th>
             {categories.map((category) => {
 
-              let catEnds    = this.getEndeavorsByCategory(category);
+              let catEnds = this.getEndeavorsByCategory(category);
 
               return catEnds.map((endeavor) => (
-                <th key={endeavor.id}>{endeavor.label}</th>
+                <th
+                  key={endeavor.id}>
+                  {endeavor.label}
+                </th>
               ));
 
             })}
           </tr>
         </thead>
+
         <tbody>
           {activities.map((activity) => (
             <tr key={activity.id}>
@@ -241,16 +251,18 @@ export default class App extends React.Component<undefined, undefined> {
 
               {categories.map((category) => {
 
-                let catEnds    = this.getEndeavorsByCategory(category);
+                let catEnds = this.getEndeavorsByCategory(category);
 
                 return catEnds.map((endeavor) => {
 
-                  const ae  = _.find(activity.endeavors, (ae) => (
+                  const ae = _.find(activity.endeavors, (ae) => (
                     ae.endeavor_id === endeavor.id
                   ));
 
                   return (
-                    <td key={endeavor.id} className={ ae && 'weight-' + ae.weight }>
+                    <td
+                      key={endeavor.id}
+                      className={ ae && 'weight-' + ae.weight }>
                       {ae && ae.weight}
                     </td>
                   );
@@ -262,8 +274,11 @@ export default class App extends React.Component<undefined, undefined> {
             </tr>
           ))}
         </tbody>
+
       </table>
+
     );
+
   }
 
 }

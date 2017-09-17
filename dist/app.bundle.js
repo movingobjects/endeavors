@@ -78,6 +78,7 @@ module.exports = React;
 
 "use strict";
 
+// Imports
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -91,7 +92,13 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var _ = __webpack_require__(7);
-var CAT_NAMES = ["Social", "Work", "Play", "Well-being"];
+// Constants
+var CAT_NAMES = [
+    'Social',
+    'Work',
+    'Play',
+    'Well-being'
+];
 var categories = CAT_NAMES.map(function (name, i) { return ({
     id: i,
     label: name
@@ -99,198 +106,143 @@ var categories = CAT_NAMES.map(function (name, i) { return ({
 var endeavors = [
     {
         id: 0,
-        label: "Spending time with friends",
+        label: 'Spending time with friends',
         category_id: 0
     },
     {
         id: 1,
-        label: "Meeting new people",
+        label: 'Meeting new people',
         category_id: 0
     },
     {
         id: 2,
-        label: "Advancing vocation",
+        label: 'Advancing vocation',
         category_id: 1
     },
     {
         id: 3,
-        label: "Giving back",
+        label: 'Giving back',
         category_id: 1
     },
     {
         id: 4,
-        label: "Keeping life organized",
+        label: 'Keeping life organized',
         category_id: 1
     },
     {
         id: 5,
-        label: "Making bucks",
+        label: 'Making bucks',
         category_id: 1
     },
     {
         id: 6,
-        label: "Having fun",
+        label: 'Having fun',
         category_id: 2
     },
     {
         id: 7,
-        label: "Creating interesting memories",
+        label: 'Creating interesting memories',
         category_id: 2
     },
     {
         id: 8,
-        label: "Experiencing nature",
+        label: 'Experiencing nature',
         category_id: 2
     },
     {
         id: 9,
-        label: "Experiencing culture",
+        label: 'Experiencing culture',
         category_id: 2
     },
     {
         id: 10,
-        label: "Learning / practicing skill",
+        label: 'Learning / practicing skill',
         category_id: 2
     },
     {
         id: 11,
-        label: "Making something",
+        label: 'Making something',
         category_id: 2
     },
     {
         id: 12,
-        label: "Encountering new ideas",
+        label: 'Encountering new ideas',
         category_id: 2
     },
     {
         id: 13,
-        label: "Slowing down",
+        label: 'Slowing down',
         category_id: 2
     },
     {
         id: 14,
-        label: "Nurturing physical health",
+        label: 'Nurturing physical health',
         category_id: 3
     },
     {
         id: 15,
-        label: "Nurturing emotional well-being",
+        label: 'Nurturing emotional well-being',
         category_id: 3
     },
 ];
 var activities = [
     {
         id: 0,
-        label: "Camping",
+        label: 'Camping',
         endeavors: [
-            {
-                endeavor_id: 0,
-                weight: 2
-            },
-            {
-                endeavor_id: 6,
-                weight: 2
-            },
-            {
-                endeavor_id: 7,
-                weight: 3
-            },
-            {
-                endeavor_id: 8,
-                weight: 3
-            },
-            {
-                endeavor_id: 13,
-                weight: 3
-            },
+            { endeavor_id: 0, weight: 2 },
+            { endeavor_id: 6, weight: 2 },
+            { endeavor_id: 7, weight: 3 },
+            { endeavor_id: 8, weight: 3 },
+            { endeavor_id: 13, weight: 3 },
         ]
     },
     {
         id: 1,
-        label: "Journaling",
+        label: 'Journaling',
         endeavors: [
-            {
-                endeavor_id: 4,
-                weight: 3
-            },
-            {
-                endeavor_id: 12,
-                weight: 1
-            },
-            {
-                endeavor_id: 13,
-                weight: 3
-            },
+            { endeavor_id: 4, weight: 3 },
+            { endeavor_id: 12, weight: 1 },
+            { endeavor_id: 13, weight: 3 },
         ]
     },
     {
         id: 2,
-        label: "Teaching",
+        label: 'Teaching',
         endeavors: [
-            {
-                endeavor_id: 1,
-                weight: 1
-            },
-            {
-                endeavor_id: 2,
-                weight: 2
-            },
-            {
-                endeavor_id: 3,
-                weight: 2
-            },
-            {
-                endeavor_id: 5,
-                weight: 1
-            },
-            {
-                endeavor_id: 7,
-                weight: 1
-            },
-            {
-                endeavor_id: 10,
-                weight: 3
-            },
+            { endeavor_id: 1, weight: 1 },
+            { endeavor_id: 2, weight: 2 },
+            { endeavor_id: 3, weight: 2 },
+            { endeavor_id: 5, weight: 1 },
+            { endeavor_id: 7, weight: 1 },
+            { endeavor_id: 10, weight: 3 },
         ]
     },
     {
         id: 3,
-        label: "Playing soccer",
+        label: 'Playing soccer',
         endeavors: [
-            {
-                endeavor_id: 0,
-                weight: 3
-            },
-            {
-                endeavor_id: 6,
-                weight: 3
-            },
-            {
-                endeavor_id: 7,
-                weight: 1
-            },
-            {
-                endeavor_id: 10,
-                weight: 3
-            },
-            {
-                endeavor_id: 14,
-                weight: 3
-            },
-            {
-                endeavor_id: 15,
-                weight: 2
-            },
+            { endeavor_id: 0, weight: 3 },
+            { endeavor_id: 6, weight: 3 },
+            { endeavor_id: 7, weight: 1 },
+            { endeavor_id: 10, weight: 3 },
+            { endeavor_id: 14, weight: 3 },
+            { endeavor_id: 15, weight: 2 },
         ]
     }
 ];
-// const endeavorsById = _.keyBy(endeavors, endeavor => endeavor.id);
-// const activitiesById = _.keyBy(activities, activity => activity.id);
+// Class
 var App = (function (_super) {
     __extends(App, _super);
+    // Constructor
     function App() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        return _super.call(this) || this;
     }
+    // Methods
+    App.prototype.getEndeavorsByCategory = function (category) {
+        return _.filter(endeavors, function (e) { return (e.category_id === category.id); });
+    };
+    // React
     App.prototype.render = function () {
         var _this = this;
         return (React.createElement("table", null,
@@ -298,7 +250,7 @@ var App = (function (_super) {
                 React.createElement("tr", null,
                     React.createElement("th", null),
                     categories.map(function (category) {
-                        var catEnds = _this._getEndeavorsByCategory(category), count = catEnds.length;
+                        var catEnds = _this.getEndeavorsByCategory(category), count = catEnds.length;
                         if (count) {
                             return (React.createElement("th", { key: category.id, colSpan: count }, category.label));
                         }
@@ -306,21 +258,18 @@ var App = (function (_super) {
                 React.createElement("tr", null,
                     React.createElement("th", null, "Activity"),
                     categories.map(function (category) {
-                        var catEnds = _this._getEndeavorsByCategory(category);
+                        var catEnds = _this.getEndeavorsByCategory(category);
                         return catEnds.map(function (endeavor) { return (React.createElement("th", { key: endeavor.id }, endeavor.label)); });
                     }))),
             React.createElement("tbody", null, activities.map(function (activity) { return (React.createElement("tr", { key: activity.id },
                 React.createElement("th", null, activity.label),
                 categories.map(function (category) {
-                    var catEnds = _this._getEndeavorsByCategory(category);
+                    var catEnds = _this.getEndeavorsByCategory(category);
                     return catEnds.map(function (endeavor) {
                         var ae = _.find(activity.endeavors, function (ae) { return (ae.endeavor_id === endeavor.id); });
-                        return (React.createElement("td", { key: endeavor.id, className: ae && "weight-" + ae.weight }, ae && ae.weight));
+                        return (React.createElement("td", { key: endeavor.id, className: ae && 'weight-' + ae.weight }, ae && ae.weight));
                     });
                 }))); }))));
-    };
-    App.prototype._getEndeavorsByCategory = function (category) {
-        return _.filter(endeavors, function (e) { return (e.category_id === category.id); });
     };
     return App;
 }(React.Component));
@@ -375,7 +324,7 @@ var React = __webpack_require__(0);
 var ReactDOM = __webpack_require__(3);
 __webpack_require__(2);
 var App_1 = __webpack_require__(1);
-ReactDOM.render(React.createElement(App_1.default, null), document.getElementById("app"));
+ReactDOM.render(React.createElement(App_1.default, null), document.getElementById('app'));
 
 
 /***/ }),
