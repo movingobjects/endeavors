@@ -6,6 +6,6 @@ import "src/resources/styles/style.scss";
 import App from "src/components/App";
 
 ReactDOM.render(
-	<App />,
-	document.getElementById("app")
+  <App />,
+  document.getElementById("app")
 );
