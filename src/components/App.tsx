@@ -1,6 +1,6 @@
 
-import * as React from "react";
-import * as _ from "lodash";
+import * as React from 'react';
+import * as _ from 'lodash';
 
 interface Category {
   id:number;
@@ -24,7 +24,7 @@ interface Activity {
   endeavors:ActivityEndeavor[];
 }
 
-const CAT_NAMES:string[] = [ "Social", "Work", "Play", "Well-being" ];
+const CAT_NAMES:string[] = [ 'Social', 'Work', 'Play', 'Well-being' ];
 
 const categories:Category[] = CAT_NAMES.map((name:string, i:number):Category => ({
   id: i,
@@ -35,85 +35,85 @@ const endeavors:Endeavor[] = [
 
   {
     id: 0,
-    label: "Spending time with friends",
+    label: 'Spending time with friends',
     category_id: 0
   },
   {
     id: 1,
-    label: "Meeting new people",
+    label: 'Meeting new people',
     category_id: 0
   },
 
   {
     id: 2,
-    label: "Advancing vocation",
+    label: 'Advancing vocation',
     category_id: 1
   },
   {
     id: 3,
-    label: "Giving back",
+    label: 'Giving back',
     category_id: 1
   },
   {
     id: 4,
-    label: "Keeping life organized",
+    label: 'Keeping life organized',
     category_id: 1
   },
   {
     id: 5,
-    label: "Making bucks",
+    label: 'Making bucks',
     category_id: 1
   },
 
   {
     id: 6,
-    label: "Having fun",
+    label: 'Having fun',
     category_id: 2
   },
   {
     id: 7,
-    label: "Creating interesting memories",
+    label: 'Creating interesting memories',
     category_id: 2
   },
   {
     id: 8,
-    label: "Experiencing nature",
+    label: 'Experiencing nature',
     category_id: 2
   },
   {
     id: 9,
-    label: "Experiencing culture",
+    label: 'Experiencing culture',
     category_id: 2
   },
   {
     id: 10,
-    label: "Learning / practicing skill",
+    label: 'Learning / practicing skill',
     category_id: 2
   },
   {
     id: 11,
-    label: "Making something",
+    label: 'Making something',
     category_id: 2
   },
   {
     id: 12,
-    label: "Encountering new ideas",
+    label: 'Encountering new ideas',
     category_id: 2
   },
   {
     id: 13,
-    label: "Slowing down",
+    label: 'Slowing down',
     category_id: 2
   },
 
   {
     id: 14,
-    label: "Nurturing physical health",
+    label: 'Nurturing physical health',
     category_id: 3
   },
   {
     id: 15,
-    label: "Nurturing emotional well-being",
+    label: 'Nurturing emotional well-being',
     category_id: 3
   },
 
@@ -122,7 +122,7 @@ const endeavors:Endeavor[] = [
 const activities:Activity[] = [
   {
     id: 0,
-    label: "Camping",
+    label: 'Camping',
     endeavors: [
       {
         endeavor_id: 0,
@@ -148,7 +148,7 @@ const activities:Activity[] = [
   },
   {
     id: 1,
-    label: "Journaling",
+    label: 'Journaling',
     endeavors: [
       {
         endeavor_id: 4,
@@ -166,7 +166,7 @@ const activities:Activity[] = [
   },
   {
     id: 2,
-    label: "Teaching",
+    label: 'Teaching',
     endeavors: [
       {
         endeavor_id: 1,
@@ -196,7 +196,7 @@ const activities:Activity[] = [
   },
   {
     id: 3,
-    label: "Playing soccer",
+    label: 'Playing soccer',
     endeavors: [
       {
         endeavor_id: 0,
@@ -278,7 +278,7 @@ export default class App extends React.Component<undefined, undefined> {
                   ));
 
                   return (
-                    <td key={endeavor.id} className={ ae && "weight-" + ae.weight }>
+                    <td key={endeavor.id} className={ ae && 'weight-' + ae.weight }>
                       {ae && ae.weight}
                     </td>
                   );
@@ -301,5 +301,3 @@ export default class App extends React.Component<undefined, undefined> {
   }
 
 }
-
-
