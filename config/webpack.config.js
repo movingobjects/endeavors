@@ -64,7 +64,8 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
       { from: 'node_modules/react/dist/react.js', to: 'resources/scripts/vendor/react/' },
-      { from: 'node_modules/react-dom/dist/react-dom.js', to: 'resources/scripts/vendor/react/' }
+      { from: 'node_modules/react-dom/dist/react-dom.js', to: 'resources/scripts/vendor/react/' },
+      { from: 'src/assets', to: 'assets/' },
     ]),
     new HtmlWebpackPlugin({
       filename: 'index.html',

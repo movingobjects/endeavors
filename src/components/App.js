@@ -4,154 +4,13 @@
 import * as React from 'react';
 import * as _ from 'lodash';
 
+import { maths, net } from 'varyd-utils';
+
 
 // Constants
 
-const CAT_NAMES = [
-  'Social',
-  'Work',
-  'Play',
-  'Well-being'
-];
-
-const categories = CAT_NAMES.map((name, i) => ({
-  id: i,
-  label: name
-}));
-
-const endeavors = [
-
-  {
-    id: 0,
-    label: 'Spending time with friends',
-    category_id: 0
-  },
-  {
-    id: 1,
-    label: 'Meeting new people',
-    category_id: 0
-  },
-
-  {
-    id: 2,
-    label: 'Advancing vocation',
-    category_id: 1
-  },
-  {
-    id: 3,
-    label: 'Giving back',
-    category_id: 1
-  },
-  {
-    id: 4,
-    label: 'Keeping life organized',
-    category_id: 1
-  },
-  {
-    id: 5,
-    label: 'Making bucks',
-    category_id: 1
-  },
-
-  {
-    id: 6,
-    label: 'Having fun',
-    category_id: 2
-  },
-  {
-    id: 7,
-    label: 'Creating interesting memories',
-    category_id: 2
-  },
-  {
-    id: 8,
-    label: 'Experiencing nature',
-    category_id: 2
-  },
-  {
-    id: 9,
-    label: 'Experiencing culture',
-    category_id: 2
-  },
-  {
-    id: 10,
-    label: 'Learning / practicing skill',
-    category_id: 2
-  },
-  {
-    id: 11,
-    label: 'Making something',
-    category_id: 2
-  },
-  {
-    id: 12,
-    label: 'Encountering new ideas',
-    category_id: 2
-  },
-  {
-    id: 13,
-    label: 'Slowing down',
-    category_id: 2
-  },
-
-  {
-    id: 14,
-    label: 'Nurturing physical health',
-    category_id: 3
-  },
-  {
-    id: 15,
-    label: 'Nurturing emotional well-being',
-    category_id: 3
-  },
-
-];
-
-const activities = [
-  {
-    id: 0,
-    label: 'Camping',
-    endeavors: [
-      { endeavor_id:  0, weight: 2 },
-      { endeavor_id:  6, weight: 2 },
-      { endeavor_id:  7, weight: 3 },
-      { endeavor_id:  8, weight: 3 },
-      { endeavor_id: 13, weight: 3 },
-    ]
-  },
-  {
-    id: 1,
-    label: 'Journaling',
-    endeavors: [
-      { endeavor_id:  4, weight: 3 },
-      { endeavor_id: 12, weight: 1 },
-      { endeavor_id: 13, weight: 3 },
-    ]
-  },
-  {
-    id: 2,
-    label: 'Teaching',
-    endeavors: [
-      { endeavor_id:  1, weight: 1 },
-      { endeavor_id:  2, weight: 2 },
-      { endeavor_id:  3, weight: 2 },
-      { endeavor_id:  5, weight: 1 },
-      { endeavor_id:  7, weight: 1 },
-      { endeavor_id: 10, weight: 3 },
-    ]
-  },
-  {
-    id: 3,
-    label: 'Playing soccer',
-    endeavors: [
-      { endeavor_id:  0, weight: 3 },
-      { endeavor_id:  6, weight: 3 },
-      { endeavor_id:  7, weight: 1 },
-      { endeavor_id: 10, weight: 3 },
-      { endeavor_id: 14, weight: 3 },
-      { endeavor_id: 15, weight: 2 },
-    ]
-  }
+const DATA_PATHS = [
+  'assets/config.json'
 ];
 
 
@@ -162,20 +21,75 @@ export default class App extends React.Component {
   // Constructor
 
   constructor() {
+
     super();
+
+    this.initBindings();
+    this.initState();
+
+    this.loadAppData();
+
+  }
+
+  initBindings() { }
+  initState() {
+
+    this.state = {
+      appLoaded: false
+    }
+
+  }
+
+
+  // Event handlers
+
+  handleDataLoad(data) {
+
+    App.config    = data[0];
+
+    this.setState({
+      appLoaded: true
+    });
+
+  }
+  handleDataError(error) {
+
+    console.log(error);
+
   }
 
 
   // Methods
 
+  loadAppData() {
+
+    Promise.all(DATA_PATHS.map((url) => net.xhrFetch(url)))
+      .then((responses) => Promise.all(responses.map((r) => r.json())))
+      .then((responses) => this.handleDataLoad(responses))
+      .catch((error) => this.handleDataError(error));
+
+  }
+
   getEndeavorsByCategory(category) {
+
+    const endeavors = App.config.endeavors;
+
     return endeavors.filter((endeavor) => (endeavor.category_id === category.id));
+
   }
 
 
   // React
 
   render() {
+
+    if (!this.state.appLoaded) {
+      return (null);
+    }
+
+    const categories = App.config.categories,
+          endeavors  = App.config.endeavors,
+          activities = App.config.activities;
 
     return (
       <table>
