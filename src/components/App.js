@@ -9,6 +9,7 @@ import fireApp from '../utils/fireApp';
 import { maths, net } from 'varyd-utils';
 
 import EditTable from './EditTable';
+import ActivityInput from './ActivityInput';
 
 
 // Constants
@@ -135,7 +136,12 @@ export default class App extends React.Component {
       return null; // TODO: splash screen component
 
     } else {
-      return <EditTable />;
+      return (
+        <div>
+          <EditTable />
+          <ActivityInput />
+        </div>
+      )
     }
 
   }

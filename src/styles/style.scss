@@ -14,6 +14,7 @@ body {
 table {
   border-spacing: 0;
   border-collapse: collapse;
+  margin-bottom: 50px;
 }
 
 th,
@@ -53,6 +54,29 @@ td {
   &.weight-3 {
     background-color: $categoryColor;
     color: darken($categoryColor, 10%);
+  }
+
+}
+
+.activity-input {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 10px;
+
+  h3 {
+    margin-top: 0px;
+    font-size: 13px;
+    color: #666;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #999;
+  }
+
+  input[type='text'] {
+    font-family: 'Roboto Mono', monospace;
   }
 
 }
