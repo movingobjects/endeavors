@@ -4,6 +4,8 @@
 import * as React from 'react';
 import * as _ from 'lodash';
 
+import fireApp from '../utils/fireApp';
+
 import { maths, net } from 'varyd-utils';
 
 import EditTable from './EditTable';
@@ -28,17 +30,29 @@ export default class App extends React.Component {
 
     this.initBindings();
     this.initState();
+    this.initFirebase();
 
     this.loadAppData();
 
   }
 
-  initBindings() { }
+  initBindings() {
+
+    this.handleFirebaseAuthStateChange = this.handleFirebaseAuthStateChange.bind(this);
+    this.handleFirebaseLogInError      = this.handleFirebaseLogInError.bind(this);
+
+  }
   initState() {
 
     this.state = {
-      appLoaded: false
+      appLoaded: false,
+      user: undefined
     }
+
+  }
+  initFirebase() {
+
+    fireApp.auth().onAuthStateChanged(this.handleFirebaseAuthStateChange);
 
   }
 
@@ -61,6 +75,20 @@ export default class App extends React.Component {
   }
 
 
+  handleFirebaseAuthStateChange(user) {
+
+    this.setState({
+      user: user
+    })
+
+  }
+  handleFirebaseLogInError(error) {
+
+    console.log(error);
+
+  }
+
+
   // Methods
 
   loadAppData() {
@@ -72,12 +100,44 @@ export default class App extends React.Component {
 
   }
 
+  logInFirebase() {
+
+    fireApp.auth().signInAnonymously().catch(this.handleFirebaseLogInError);
+
+  }
+
 
   // React
 
+  componentDidMount() {
+
+    this.unsubscribeAuth = fireApp.auth().onAuthStateChanged(this.handleFirebaseAuthStateChange);
+
+    this.logInFirebase();
+
+  }
+
+  componentWillUnmount() {
+
+    if (this.unsubscribeAuth) {
+      this.unsubscribeAuth();
+    }
+
+  }
+
   render() {
 
-    return (this.state.appLoaded) ? <EditTable /> : (null);
+    const loggedIn = this.state.user;
+
+    if (!this.state.appLoaded) {
+      return null;
+
+    } else if (!loggedIn) {
+      return null; // TODO: splash screen component
+
+    } else {
+      return <EditTable />;
+    }
 
   }
 
