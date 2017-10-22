@@ -12,7 +12,7 @@ import App from './App';
 
 // Component
 
-export default class EndeavorsTableCell extends React.Component {
+export default class EditTableCell extends React.Component {
 
   // Constructor
 
@@ -27,17 +27,17 @@ export default class EndeavorsTableCell extends React.Component {
 
   render() {
 
-    const endeavor  = this.props.endeavor,
-          activity  = this.props.activity;
+    const value    = this.props.value,
+          activity = this.props.activity;
 
-    if (endeavor === undefined) {
+    if (value === undefined) {
       return (<td />);
     }
 
     return (
       <td
-        className={ 'weight-' + endeavor.weight }>
-        {endeavor.weight}
+        className={ 'weight-' + value.weight }>
+        {value.weight}
       </td>
     );
 

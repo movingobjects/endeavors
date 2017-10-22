@@ -6,7 +6,7 @@ import * as _ from 'lodash';
 
 import { maths, net } from 'varyd-utils';
 
-import EndeavorsTable from './EndeavorsTable';
+import EditTable from './EditTable';
 
 
 // Constants
@@ -77,7 +77,7 @@ export default class App extends React.Component {
 
   render() {
 
-    return (this.state.appLoaded) ? <EndeavorsTable /> : (null);
+    return (this.state.appLoaded) ? <EditTable /> : (null);
 
   }
 

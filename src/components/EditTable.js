@@ -4,7 +4,7 @@
 import * as React from 'react';
 
 import App from './App';
-import EndeavorsTableCell from './EndeavorsTableCell';
+import EditTableCell from './EditTableCell';
 
 
 // Constants
@@ -12,7 +12,7 @@ import EndeavorsTableCell from './EndeavorsTableCell';
 
 // Component
 
-export default class EndeavorsTable extends React.Component {
+export default class EditTable extends React.Component {
 
   // Constructor
 
@@ -25,11 +25,11 @@ export default class EndeavorsTable extends React.Component {
 
   // Helpers
 
-  getEndeavorsByCategory(category) {
+  getValuesByCategory(category) {
 
-    const endeavors = App.config.endeavors;
+    const values = App.config.values;
 
-    return endeavors.filter((endeavor) => (endeavor.category_id === category.id));
+    return values.filter((value) => (value.category_id === category.id));
 
   }
 
@@ -39,7 +39,7 @@ export default class EndeavorsTable extends React.Component {
   render() {
 
     const categories = App.config.categories,
-          endeavors  = App.config.endeavors,
+          values     = App.config.values,
           activities = App.config.activities;
 
     return (
@@ -51,7 +51,7 @@ export default class EndeavorsTable extends React.Component {
             <th></th>
             {categories.map((category) => {
 
-              let catEnds = this.getEndeavorsByCategory(category),
+              let catEnds = this.getValuesByCategory(category),
                   count   = catEnds.length;
 
               if (count) {
@@ -70,12 +70,12 @@ export default class EndeavorsTable extends React.Component {
             <th>Activity</th>
             {categories.map((category) => {
 
-              let catEnds = this.getEndeavorsByCategory(category);
+              let catEnds = this.getValuesByCategory(category);
 
-              return catEnds.map((endeavor) => (
+              return catEnds.map((value) => (
                 <th
-                  key={endeavor.id}>
-                  {endeavor.label}
+                  key={value.id}>
+                  {value.label}
                 </th>
               ));
 
@@ -90,18 +90,18 @@ export default class EndeavorsTable extends React.Component {
 
               {categories.map((category) => {
 
-                let catEnds = this.getEndeavorsByCategory(category);
+                let catEnds = this.getValuesByCategory(category);
 
-                return catEnds.map((endeavor) => {
+                return catEnds.map((value) => {
 
-                  const ae = _.find(activity.endeavors, (ae) => (
-                    ae.endeavor_id === endeavor.id
+                  const ae = _.find(activity.values, (ae) => (
+                    ae.value_id === value.id
                   ));
 
                   return (
-                    <EndeavorsTableCell
-                      key={endeavor.id}
-                      endeavor={ae}
+                    <EditTableCell
+                      key={value.id}
+                      value={ae}
                       activity={activity} />
                   );
 
