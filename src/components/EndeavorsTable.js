@@ -4,6 +4,7 @@
 import * as React from 'react';
 
 import App from './App';
+import EndeavorsTableCell from './EndeavorsTableCell';
 
 
 // Constants
@@ -98,11 +99,10 @@ export default class EndeavorsTable extends React.Component {
                   ));
 
                   return (
-                    <td
+                    <EndeavorsTableCell
                       key={endeavor.id}
-                      className={ ae && 'weight-' + ae.weight }>
-                      {ae && ae.weight}
-                    </td>
+                      endeavor={ae}
+                      activity={activity} />
                   );
 
                 });
