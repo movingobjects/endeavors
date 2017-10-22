@@ -27,17 +27,17 @@ export default class EditTableCell extends React.Component {
 
   render() {
 
-    const value    = this.props.value,
+    const valLink = this.props.valLink,
           activity = this.props.activity;
 
-    if (value === undefined) {
+    if (valLink === undefined) {
       return (<td />);
     }
 
     return (
       <td
-        className={ 'weight-' + value.weight }>
-        {value.weight}
+        className={ 'weight-' + valLink.weight }>
+        {valLink.weight}
       </td>
     );
 

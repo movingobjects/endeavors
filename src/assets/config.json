@@ -17,7 +17,6 @@
       "id": 3,
       "label": "Well-being"
     }
-
   ],
 
   "values": [
@@ -92,7 +91,6 @@
       "label": "Slowing down",
       "category_id": 2
     },
-
     {
       "id": 14,
       "label": "Nurturing physical health",
@@ -103,11 +101,9 @@
       "label": "Nurturing emotional well-being",
       "category_id": 3
     }
-
   ],
 
   "activities": [
-
     {
       "id": 0,
       "label": "Camping",

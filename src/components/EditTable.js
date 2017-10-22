@@ -3,6 +3,8 @@
 
 import * as React from 'react';
 
+import fireApp from '../utils/fireApp';
+
 import App from './App';
 import EditTableCell from './EditTableCell';
 
@@ -20,27 +22,113 @@ export default class EditTable extends React.Component {
 
     super();
 
+    this.initBindings();
+    this.initState();
+
+  }
+
+  initBindings() {
+
+    this.handleCategoriesValue = this.handleCategoriesValue.bind(this);
+    this.handleValuesValue     = this.handleValuesValue.bind(this);
+    this.handleActivitiesValue = this.handleActivitiesValue.bind(this);
+
+  }
+
+  initState() {
+
+    this.state = {
+      categories: [],
+      values: [],
+      activities: []
+    }
+
   }
 
 
+  // Event handlers
+
+  handleCategoriesValue(data) {
+
+    this.setState({
+      categories: data.val()
+    });
+
+  }
+  handleValuesValue(data) {
+
+    this.setState({
+      values: data.val()
+    });
+
+  }
+  handleActivitiesValue(data) {
+
+    this.setState({
+      activities: data.val()
+    });
+
+  }
+
   // Helpers
 
-  getValuesByCategory(category) {
+  getValuesByCategoryKey(catKey, values) {
 
-    const values = App.config.values;
+    const obj = {};
 
-    return values.filter((value) => (value.category_id === category.id));
+    _.each(values, (value, valKey) => {
+
+      if (value.category_key === catKey) {
+        obj[valKey] = value;
+      }
+
+    });
+
+    return obj;
 
   }
 
 
   // React
 
+  componentDidMount() {
+
+    const userId  = 'default';
+
+    this.categoriesRef = fireApp.database().ref(`categories/${userId}`);
+    this.valuesRef     = fireApp.database().ref(`values/${userId}`);
+    this.activitiesRef = fireApp.database().ref(`activities/${userId}`);
+
+    this.categoriesRef.on('value', this.handleCategoriesValue);
+    this.valuesRef.on('value', this.handleValuesValue);
+    this.activitiesRef.on('value', this.handleActivitiesValue);
+
+  }
+
+  componentWillUnmount() {
+
+    if (this.categoriesRef) this.categoriesRef.off('value', this.handleCategoriesValue);
+    if (this.valuesRef) this.valuesRef.off('value', this.handleValuesValue);
+    if (this.activitiesRef) this.activitiesRef.off('value', this.handleActivitiesValue);
+
+  }
+
   render() {
 
-    const categories = App.config.categories,
-          values     = App.config.values,
-          activities = App.config.activities;
+    const categories = this.state.categories,
+          values     = this.state.values,
+          activities = this.state.activities;
+
+    const hasAllData =
+      !_.isEmpty(categories) &&
+      !_.isEmpty(values) &&
+      !_.isEmpty(activities);
+
+    if (!hasAllData) {
+      return (
+        <p>Loading...</p>
+      );
+    }
 
     return (
 
@@ -48,16 +136,19 @@ export default class EditTable extends React.Component {
 
         <thead>
           <tr>
-            <th></th>
-            {categories.map((category) => {
+            <th />
 
-              let catEnds = this.getValuesByCategory(category),
-                  count   = catEnds.length;
+            {_.map(categories, (category, key) => {
+
+              if (!category) return null;
+
+              let catVals = this.getValuesByCategoryKey(key, values),
+                  count   = _.size(catVals);
 
               if (count) {
                 return (
                   <th
-                    key={category.id}
+                    key={key}
                     colSpan={count} >
                     {category.label}
                   </th>
@@ -66,42 +157,48 @@ export default class EditTable extends React.Component {
 
             })}
           </tr>
+
           <tr>
+
             <th>Activity</th>
-            {categories.map((category) => {
 
-              let catEnds = this.getValuesByCategory(category);
+            {_.map(categories, (category, catKey) => {
 
-              return catEnds.map((value) => (
+              let catVals = this.getValuesByCategoryKey(catKey, values);
+
+              return _.map(catVals, (value, valKey) => (
                 <th
-                  key={value.id}>
+                  key={valKey}>
                   {value.label}
                 </th>
               ));
 
             })}
+
           </tr>
+
         </thead>
 
         <tbody>
-          {activities.map((activity) => (
-            <tr key={activity.id}>
+
+          {_.map(activities, (activity, actKey) => (
+            <tr key={actKey}>
               <th>{activity.label}</th>
 
-              {categories.map((category) => {
+              {_.map(categories, (category, catKey) => {
 
-                let catEnds = this.getValuesByCategory(category);
+                let catVals = this.getValuesByCategoryKey(catKey, values);
 
-                return catEnds.map((value) => {
+                return _.map(catVals, (value, valKey) => {
 
-                  const ae = _.find(activity.values, (ae) => (
-                    ae.value_id === value.id
+                  const valLink = _.find(activity.values, (valLink) => (
+                    valLink.value_key === valKey
                   ));
 
                   return (
                     <EditTableCell
-                      key={value.id}
-                      value={ae}
+                      key={valKey}
+                      valLink={valLink}
                       activity={activity} />
                   );
 

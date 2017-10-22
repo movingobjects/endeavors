@@ -74,12 +74,11 @@ export default class App extends React.Component {
 
   }
 
-
   handleFirebaseAuthStateChange(user) {
 
     this.setState({
       user: user
-    })
+    });
 
   }
   handleFirebaseLogInError(error) {
