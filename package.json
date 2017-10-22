@@ -9,7 +9,7 @@
   },
   "scripts": {
     "clean": "rm -rf dist/*",
-    "build": "webpack            --config config/webpack.config.js",
+    "build": "npm run clean && webpack --config config/webpack.config.js",
     "dev": "webpack-dev-server --config config/webpack.config.js --hot --inline --open"
   },
   "repository": {
