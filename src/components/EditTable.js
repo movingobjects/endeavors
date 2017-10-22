@@ -34,7 +34,6 @@ export default class EditTable extends React.Component {
     this.handleActivitiesValue = this.handleActivitiesValue.bind(this);
 
   }
-
   initState() {
 
     this.state = {
@@ -70,7 +69,14 @@ export default class EditTable extends React.Component {
 
   }
 
-  // Helpers
+
+  // Methods
+
+  deleteActivity(actKey) {
+
+    this.activitiesRef.child(actKey).remove();
+
+  }
 
   getValuesByCategoryKey(catKey, values) {
 
@@ -183,7 +189,13 @@ export default class EditTable extends React.Component {
 
           {_.map(activities, (activity, actKey) => (
             <tr key={actKey}>
-              <th>{activity.label}</th>
+              <th>
+                {activity.label}
+                <button
+                  onClick={() => this.deleteActivity(actKey)}>
+                  &times;
+                </button>
+              </th>
 
               {_.map(categories, (category, catKey) => {
 
