@@ -74,206 +74,214 @@ module.exports = React;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
 
 // Imports
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var _ = __webpack_require__(7);
+
+
+
+
 // Constants
-var CAT_NAMES = [
-    'Social',
-    'Work',
-    'Play',
-    'Well-being'
-];
-var categories = CAT_NAMES.map(function (name, i) { return ({
-    id: i,
-    label: name
-}); });
-var endeavors = [
-    {
-        id: 0,
-        label: 'Spending time with friends',
-        category_id: 0
-    },
-    {
-        id: 1,
-        label: 'Meeting new people',
-        category_id: 0
-    },
-    {
-        id: 2,
-        label: 'Advancing vocation',
-        category_id: 1
-    },
-    {
-        id: 3,
-        label: 'Giving back',
-        category_id: 1
-    },
-    {
-        id: 4,
-        label: 'Keeping life organized',
-        category_id: 1
-    },
-    {
-        id: 5,
-        label: 'Making bucks',
-        category_id: 1
-    },
-    {
-        id: 6,
-        label: 'Having fun',
-        category_id: 2
-    },
-    {
-        id: 7,
-        label: 'Creating interesting memories',
-        category_id: 2
-    },
-    {
-        id: 8,
-        label: 'Experiencing nature',
-        category_id: 2
-    },
-    {
-        id: 9,
-        label: 'Experiencing culture',
-        category_id: 2
-    },
-    {
-        id: 10,
-        label: 'Learning / practicing skill',
-        category_id: 2
-    },
-    {
-        id: 11,
-        label: 'Making something',
-        category_id: 2
-    },
-    {
-        id: 12,
-        label: 'Encountering new ideas',
-        category_id: 2
-    },
-    {
-        id: 13,
-        label: 'Slowing down',
-        category_id: 2
-    },
-    {
-        id: 14,
-        label: 'Nurturing physical health',
-        category_id: 3
-    },
-    {
-        id: 15,
-        label: 'Nurturing emotional well-being',
-        category_id: 3
-    },
-];
-var activities = [
-    {
-        id: 0,
-        label: 'Camping',
-        endeavors: [
-            { endeavor_id: 0, weight: 2 },
-            { endeavor_id: 6, weight: 2 },
-            { endeavor_id: 7, weight: 3 },
-            { endeavor_id: 8, weight: 3 },
-            { endeavor_id: 13, weight: 3 },
-        ]
-    },
-    {
-        id: 1,
-        label: 'Journaling',
-        endeavors: [
-            { endeavor_id: 4, weight: 3 },
-            { endeavor_id: 12, weight: 1 },
-            { endeavor_id: 13, weight: 3 },
-        ]
-    },
-    {
-        id: 2,
-        label: 'Teaching',
-        endeavors: [
-            { endeavor_id: 1, weight: 1 },
-            { endeavor_id: 2, weight: 2 },
-            { endeavor_id: 3, weight: 2 },
-            { endeavor_id: 5, weight: 1 },
-            { endeavor_id: 7, weight: 1 },
-            { endeavor_id: 10, weight: 3 },
-        ]
-    },
-    {
-        id: 3,
-        label: 'Playing soccer',
-        endeavors: [
-            { endeavor_id: 0, weight: 3 },
-            { endeavor_id: 6, weight: 3 },
-            { endeavor_id: 7, weight: 1 },
-            { endeavor_id: 10, weight: 3 },
-            { endeavor_id: 14, weight: 3 },
-            { endeavor_id: 15, weight: 2 },
-        ]
-    }
-];
+
+const CAT_NAMES = ['Social', 'Work', 'Play', 'Well-being'];
+
+const categories = CAT_NAMES.map((name, i) => ({
+  id: i,
+  label: name
+}));
+
+const endeavors = [{
+  id: 0,
+  label: 'Spending time with friends',
+  category_id: 0
+}, {
+  id: 1,
+  label: 'Meeting new people',
+  category_id: 0
+}, {
+  id: 2,
+  label: 'Advancing vocation',
+  category_id: 1
+}, {
+  id: 3,
+  label: 'Giving back',
+  category_id: 1
+}, {
+  id: 4,
+  label: 'Keeping life organized',
+  category_id: 1
+}, {
+  id: 5,
+  label: 'Making bucks',
+  category_id: 1
+}, {
+  id: 6,
+  label: 'Having fun',
+  category_id: 2
+}, {
+  id: 7,
+  label: 'Creating interesting memories',
+  category_id: 2
+}, {
+  id: 8,
+  label: 'Experiencing nature',
+  category_id: 2
+}, {
+  id: 9,
+  label: 'Experiencing culture',
+  category_id: 2
+}, {
+  id: 10,
+  label: 'Learning / practicing skill',
+  category_id: 2
+}, {
+  id: 11,
+  label: 'Making something',
+  category_id: 2
+}, {
+  id: 12,
+  label: 'Encountering new ideas',
+  category_id: 2
+}, {
+  id: 13,
+  label: 'Slowing down',
+  category_id: 2
+}, {
+  id: 14,
+  label: 'Nurturing physical health',
+  category_id: 3
+}, {
+  id: 15,
+  label: 'Nurturing emotional well-being',
+  category_id: 3
+}];
+
+const activities = [{
+  id: 0,
+  label: 'Camping',
+  endeavors: [{ endeavor_id: 0, weight: 2 }, { endeavor_id: 6, weight: 2 }, { endeavor_id: 7, weight: 3 }, { endeavor_id: 8, weight: 3 }, { endeavor_id: 13, weight: 3 }]
+}, {
+  id: 1,
+  label: 'Journaling',
+  endeavors: [{ endeavor_id: 4, weight: 3 }, { endeavor_id: 12, weight: 1 }, { endeavor_id: 13, weight: 3 }]
+}, {
+  id: 2,
+  label: 'Teaching',
+  endeavors: [{ endeavor_id: 1, weight: 1 }, { endeavor_id: 2, weight: 2 }, { endeavor_id: 3, weight: 2 }, { endeavor_id: 5, weight: 1 }, { endeavor_id: 7, weight: 1 }, { endeavor_id: 10, weight: 3 }]
+}, {
+  id: 3,
+  label: 'Playing soccer',
+  endeavors: [{ endeavor_id: 0, weight: 3 }, { endeavor_id: 6, weight: 3 }, { endeavor_id: 7, weight: 1 }, { endeavor_id: 10, weight: 3 }, { endeavor_id: 14, weight: 3 }, { endeavor_id: 15, weight: 2 }]
+}];
+
 // Class
-var App = (function (_super) {
-    __extends(App, _super);
-    // Constructor
-    function App() {
-        return _super.call(this) || this;
-    }
-    // Methods
-    App.prototype.getEndeavorsByCategory = function (category) {
-        return _.filter(endeavors, function (e) { return (e.category_id === category.id); });
-    };
-    // React
-    App.prototype.render = function () {
-        var _this = this;
-        return (React.createElement("table", null,
-            React.createElement("thead", null,
-                React.createElement("tr", null,
-                    React.createElement("th", null),
-                    categories.map(function (category) {
-                        var catEnds = _this.getEndeavorsByCategory(category), count = catEnds.length;
-                        if (count) {
-                            return (React.createElement("th", { key: category.id, colSpan: count }, category.label));
-                        }
-                    })),
-                React.createElement("tr", null,
-                    React.createElement("th", null, "Activity"),
-                    categories.map(function (category) {
-                        var catEnds = _this.getEndeavorsByCategory(category);
-                        return catEnds.map(function (endeavor) { return (React.createElement("th", { key: endeavor.id }, endeavor.label)); });
-                    }))),
-            React.createElement("tbody", null, activities.map(function (activity) { return (React.createElement("tr", { key: activity.id },
-                React.createElement("th", null, activity.label),
-                categories.map(function (category) {
-                    var catEnds = _this.getEndeavorsByCategory(category);
-                    return catEnds.map(function (endeavor) {
-                        var ae = _.find(activity.endeavors, function (ae) { return (ae.endeavor_id === endeavor.id); });
-                        return (React.createElement("td", { key: endeavor.id, className: ae && 'weight-' + ae.weight }, ae && ae.weight));
-                    });
-                }))); }))));
-    };
-    return App;
-}(React.Component));
-exports.default = App;
+
+class App extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+
+  // Constructor
+
+  constructor() {
+    super();
+  }
+
+  // Methods
+
+  getEndeavorsByCategory(category) {
+    return endeavors.filter(endeavor => endeavor.category_id === category.id);
+  }
+
+  // React
+
+  render() {
+
+    return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](
+      'table',
+      null,
+      __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](
+        'thead',
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](
+          'tr',
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]('th', null),
+          categories.map(category => {
+
+            let catEnds = this.getEndeavorsByCategory(category),
+                count = catEnds.length;
+
+            if (count) {
+              return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](
+                'th',
+                {
+                  key: category.id,
+                  colSpan: count },
+                category.label
+              );
+            }
+          })
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](
+          'tr',
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](
+            'th',
+            null,
+            'Activity'
+          ),
+          categories.map(category => {
+
+            let catEnds = this.getEndeavorsByCategory(category);
+
+            return catEnds.map(endeavor => __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](
+              'th',
+              {
+                key: endeavor.id },
+              endeavor.label
+            ));
+          })
+        )
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](
+        'tbody',
+        null,
+        activities.map(activity => __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](
+          'tr',
+          { key: activity.id },
+          __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](
+            'th',
+            null,
+            activity.label
+          ),
+          categories.map(category => {
+
+            let catEnds = this.getEndeavorsByCategory(category);
+
+            return catEnds.map(endeavor => {
+
+              const ae = __WEBPACK_IMPORTED_MODULE_1_lodash__["find"](activity.endeavors, ae => ae.endeavor_id === endeavor.id);
+
+              return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](
+                'td',
+                {
+                  key: endeavor.id,
+                  className: ae && 'weight-' + ae.weight },
+                ae && ae.weight
+              );
+            });
+          })
+        ))
+      )
+    );
+  }
+
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = App;
 
 
 /***/ }),
@@ -315,17 +323,25 @@ module.exports = ReactDOM;
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__styles_style_scss__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__styles_style_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__styles_style_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_App__ = __webpack_require__(1);
 
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var ReactDOM = __webpack_require__(3);
-__webpack_require__(2);
-var App_1 = __webpack_require__(1);
-ReactDOM.render(React.createElement(App_1.default, null), document.getElementById('app'));
 
+
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_1_react_dom__["render"](__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__components_App__["a" /* default */], null), document.getElementById('app'));
 
 /***/ }),
 /* 5 */

@@ -5,46 +5,21 @@ import * as React from 'react';
 import * as _ from 'lodash';
 
 
-// Interfaces
-
-interface Category {
-  id:number;
-  label:string;
-}
-
-interface Endeavor {
-  id:number;
-  label:string;
-  category_id:number;
-}
-
-interface ActivityEndeavor {
-  endeavor_id:number;
-  weight:number;
-}
-
-interface Activity {
-  id:number;
-  label:string;
-  endeavors:ActivityEndeavor[];
-}
-
-
 // Constants
 
-const CAT_NAMES:string[] = [
+const CAT_NAMES = [
   'Social',
   'Work',
   'Play',
   'Well-being'
 ];
 
-const categories:Category[] = CAT_NAMES.map((name:string, i:number):Category => ({
+const categories = CAT_NAMES.map((name, i) => ({
   id: i,
   label: name
 }));
 
-const endeavors:Endeavor[] = [
+const endeavors = [
 
   {
     id: 0,
@@ -132,7 +107,7 @@ const endeavors:Endeavor[] = [
 
 ];
 
-const activities:Activity[] = [
+const activities = [
   {
     id: 0,
     label: 'Camping',
@@ -182,7 +157,7 @@ const activities:Activity[] = [
 
 // Class
 
-export default class App extends React.Component<undefined, undefined> {
+export default class App extends React.Component {
 
   // Constructor
 
@@ -193,10 +168,8 @@ export default class App extends React.Component<undefined, undefined> {
 
   // Methods
 
-  getEndeavorsByCategory(category:Category) {
-    return _.filter(endeavors, (e) => (
-      e.category_id === category.id
-    ));
+  getEndeavorsByCategory(category) {
+    return endeavors.filter((endeavor) => (endeavor.category_id === category.id));
   }
 
 
