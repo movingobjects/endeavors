@@ -41,6 +41,7 @@ export default class ActivityInput extends React.Component {
 
   }
 
+
   // Event handlers
 
   handleInputChange(e) {
@@ -54,13 +55,41 @@ export default class ActivityInput extends React.Component {
 
     e.preventDefault();
 
-    if (this.state.valLabel && this.state.valLabel.length) {
-      this.activitiesRef.push({
+    if (this.validate()) {
+
+      const activity  = {
         label: this.state.valLabel
-      }, (error) => {
-        console.log(error);
+      };
+
+      this.activitiesRef.push(activity, (error) => {
+
+        if (!error) {
+          this.clearInput();
+        }
+
       });
+
     }
+
+  }
+
+  // Methods
+
+  clearInput() {
+
+    this.setState({
+      valLabel: ''
+    });
+
+  }
+
+  validate() {
+
+    const hasLabel =
+      this.state.valLabel &&
+      this.state.valLabel.length;
+
+    return hasLabel;
 
   }
 
@@ -82,20 +111,28 @@ export default class ActivityInput extends React.Component {
         className='activity-input'
         onSubmit={this.handleSubmit}>
 
-        <h3>Add new Activity</h3>
+        <h3>Add Activity</h3>
 
-        <label
-          htmlFor='activity-input-label'>Label</label>
+        <p>
+          <label
+            htmlFor='activity-input-label'>Label</label>
+        </p>
 
-        <input
-          id='activity-input-label'
-          type='text'
-          name='valLabel'
-          value={this.state.valLabel}
-          onChange={this.handleInputChange}/>
+        <p>
+          <input
+            id='activity-input-label'
+            type='text'
+            name='valLabel'
+            value={this.state.valLabel}
+            onChange={this.handleInputChange}/>
+        </p>
 
-        <input
-          type='submit' />
+        <p>
+          <input
+            id='activity-input-submit'
+            type='submit'
+            disabled={!this.validate()}/>
+        </p>
 
       </form>
     );
