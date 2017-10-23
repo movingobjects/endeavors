@@ -67,23 +67,42 @@ section.edit-table {
       font: 13px/17px $stdFont;
       width: 100%;
       color: inherit;
+
+      -webkit-tap-highlight-color: transparent;
+      outline: none !important;
+
     }
 
-    &.weight-0 {
-      background-color: transparent;
-      color: #ccc;
+    &.editing {
+      background-color: white;
+      color: #90f;
+      box-shadow: inset 0 0 0 3px #90f;
     }
-    &.weight-1 {
-      background-color: transparentize($categoryColor, 0.85);
-      color: darken($categoryColor, 0%);
-    }
-    &.weight-2 {
-      background-color: transparentize($categoryColor, 0.5);
-      color: darken($categoryColor, 5%);
-    }
-    &.weight-3 {
-      background-color: $categoryColor;
-      color: darken($categoryColor, 10%);
+
+    &:not(.editing) {
+
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      &.weight-0 {
+        background-color: transparent;
+        color: transparent;
+      }
+      &.weight-1 {
+        background-color: transparentize($categoryColor, 0.85);
+        color: darken($categoryColor, 0%);
+      }
+      &.weight-2 {
+        background-color: transparentize($categoryColor, 0.5);
+        color: darken($categoryColor, 5%);
+      }
+      &.weight-3 {
+        background-color: $categoryColor;
+        color: darken($categoryColor, 10%);
+      }
     }
 
   }

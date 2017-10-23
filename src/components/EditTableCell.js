@@ -27,7 +27,9 @@ export default class EditTableCell extends React.Component {
 
   initBindings() {
 
-    this.handleWeightChange  = this.handleWeightChange.bind(this);
+    this.handleWeightChange = this.handleWeightChange.bind(this);
+    this.handleInputFocus   = this.handleInputFocus.bind(this);
+    this.handleInputBlur    = this.handleInputBlur.bind(this);
 
   }
   initState() {
@@ -39,6 +41,19 @@ export default class EditTableCell extends React.Component {
   }
 
   // Event handlers
+
+  handleInputFocus(e) {
+
+    this.setState({
+      editing: true
+    });
+
+  }
+  handleInputBlur(e) {
+    this.setState({
+      editing: false
+    });
+  }
 
   handleWeightChange(e) {
 
@@ -74,7 +89,9 @@ export default class EditTableCell extends React.Component {
         className={classes}>
 
         <input
-          type='text'
+          type='number'
+          onFocus={this.handleInputFocus}
+          onBlur={this.handleInputBlur}
           onChange={this.handleWeightChange}
           value={weight} />
 
