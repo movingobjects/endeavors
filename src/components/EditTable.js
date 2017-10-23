@@ -190,11 +190,17 @@ export default class EditTable extends React.Component {
           {_.map(activities, (activity, actKey) => (
             <tr key={actKey}>
               <th>
+
                 {activity.label}
-                <button
+
+                &nbsp;
+
+                <a
+                  className='remove-btn'
                   onClick={() => this.deleteActivity(actKey)}>
                   &times;
-                </button>
+                </a>
+
               </th>
 
               {_.map(categories, (category, catKey) => {
