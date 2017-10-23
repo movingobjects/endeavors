@@ -60,6 +60,19 @@ section.edit-table {
   td {
     text-align: center;
 
+    input {
+      border: none;
+      background-color: transparent;
+      text-align: center;
+      font: 13px/17px $stdFont;
+      width: 100%;
+      color: inherit;
+    }
+
+    &.weight-0 {
+      background-color: transparent;
+      color: #ccc;
+    }
     &.weight-1 {
       background-color: transparentize($categoryColor, 0.85);
       color: darken($categoryColor, 0%);

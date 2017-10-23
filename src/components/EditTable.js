@@ -32,6 +32,7 @@ export default class EditTable extends React.Component {
     this.handleCategoriesValue = this.handleCategoriesValue.bind(this);
     this.handleValuesValue     = this.handleValuesValue.bind(this);
     this.handleActivitiesValue = this.handleActivitiesValue.bind(this);
+    this.handleWeightChange    = this.handleWeightChange.bind(this);
 
   }
   initState() {
@@ -69,6 +70,15 @@ export default class EditTable extends React.Component {
 
   }
 
+  handleWeightChange(actKey, valLinkKey, weight) {
+
+    weight  = Math.min(3, Math.max(0, weight));
+
+    this.activitiesRef.child(actKey + '/values/' + valLinkKey).update({
+      weight: weight
+    });
+
+  }
 
   // Methods
 
@@ -231,8 +241,10 @@ export default class EditTable extends React.Component {
                   return (
                     <EditTableCell
                       key={valKey}
-                      valLink={valLink}
-                      activity={activity} />
+                      actKey={actKey}
+                      activity={activity}
+                      valLinkKey={valKey}
+                      onWeightChange={this.handleWeightChange} />
                   );
 
                 });
