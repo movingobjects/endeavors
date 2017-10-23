@@ -10,6 +10,7 @@ import { maths, net } from 'varyd-utils';
 
 import EditTable from './EditTable';
 import ActivityInput from './ActivityInput';
+import ValueInput from './ValueInput';
 
 
 // Constants

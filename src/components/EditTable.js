@@ -37,9 +37,9 @@ export default class EditTable extends React.Component {
   initState() {
 
     this.state = {
-      categories: [],
-      values: [],
-      activities: []
+      categories: undefined,
+      values: undefined,
+      activities: undefined
     }
 
   }
