@@ -138,10 +138,24 @@ export default class App extends React.Component {
 
     } else {
       return (
-        <div>
-          <EditTable />
-          <ActivityInput />
-        </div>
+        <main>
+
+          <header>
+            <h1>Endeavors</h1>
+          </header>
+
+          <section
+            className='edit-table'>
+            <EditTable />
+          </section>
+
+          <section
+            className='input-forms'>
+            <ValueInput />
+            <ActivityInput />
+          </section>
+
+        </main>
       )
     }
 
