@@ -1,0 +1,89 @@
+// Vars
+
+$categoryColor: #9c0;
+
+
+// Elements
+
+body {
+  font-family: $stdFont;
+  font-size: 13px;
+  margin: 25px;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  margin-bottom: 50px;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 10px 10px;
+  width: 100px;
+
+  &:first-child {
+    width: 200px;
+  }
+
+}
+
+thead th {
+  background-color: #eee;
+  color: #666;
+}
+
+tbody th:first-child {
+  text-align: left;
+  font-weight: normal;
+  color: #999;
+}
+
+td {
+  text-align: center;
+
+  &.weight-1 {
+    background-color: transparentize($categoryColor, 0.85);
+    color: darken($categoryColor, 0%);
+  }
+  &.weight-2 {
+    background-color: transparentize($categoryColor, 0.5);
+    color: darken($categoryColor, 5%);
+  }
+  &.weight-3 {
+    background-color: $categoryColor;
+    color: darken($categoryColor, 10%);
+  }
+
+}
+
+form {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 10px;
+
+  h3 {
+    margin-top: 0px;
+    font-size: 13px;
+    color: #666;
+  }
+
+  label {
+    color: #999;
+  }
+
+  p {
+    margin: 5px 0;
+  }
+
+  input {
+
+    &[type='text'] {
+      font-family: $stdFont;
+      font-size: 13px;
+    }
+
+  }
+
+}
