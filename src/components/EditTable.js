@@ -77,6 +77,11 @@ export default class EditTable extends React.Component {
     this.activitiesRef.child(actKey).remove();
 
   }
+  deleteValue(valKey) {
+
+    this.valuesRef.child(valKey).remove();
+
+  }
 
   getValuesByCategoryKey(catKey, values) {
 
@@ -175,7 +180,17 @@ export default class EditTable extends React.Component {
               return _.map(catVals, (value, valKey) => (
                 <th
                   key={valKey}>
+
                   {value.label}
+
+                  &nbsp;
+
+                  <a
+                    className='remove-btn'
+                    onClick={() => this.deleteValue(valKey)}>
+                    &times;
+                  </a>
+
                 </th>
               ));
 

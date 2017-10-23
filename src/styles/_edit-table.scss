@@ -16,11 +16,30 @@ section.edit-table {
       width: 200px;
     }
 
+    a.remove-btn {
+      display: none;
+    }
+
+    &:hover a.remove-btn {
+      display: inline-block;
+    }
+
   }
 
   thead th {
     background-color: #eee;
     color: #666;
+    position: relative;
+
+    a.remove-btn {
+      background-color: #eee;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      color: #aaa;
+      border-color: #aaa;
+    }
+
   }
 
   tbody th:first-child {
@@ -30,15 +49,10 @@ section.edit-table {
     position: relative;
 
     a.remove-btn {
-      display: none;
       position: absolute;
       right: 10px;
       top: 50%;
       transform: translate(0px, -50%);
-    }
-
-    &:hover a.remove-btn {
-      display: inline-block;
     }
 
   }
@@ -63,11 +77,11 @@ section.edit-table {
 
   a.remove-btn {
     display: inline-block;
-    border: 1px solid #ddd;
+    border: 1px solid #aaa;
     background: transparent;
     font-size: 15px;
     border-radius: 100%;
-    color: #ccc;
+    color: #aaa;
     width: 20px;
     height: 20px;
     text-align: center;
