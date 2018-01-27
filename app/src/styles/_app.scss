@@ -1,17 +1,84 @@
 // Vars
 
 $categoryColor: #0dd;
-
+$headerH: 60px;
 
 // Elements
 
+html,
+body,
+div#app,
+div.app {
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+}
+
 body {
   font: 13px/17px $stdFont;
-  margin: 25px;
+  background-color: white;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
 }
 
 header {
-  margin-bottom: 25px;
+  -webkit-app-region: drag;
+  z-index: 100;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: $headerH;
+  background-color: #222;
+
+  h1 {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translate(0px, -50%);
+    margin: 0px;
+    color: #666;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.025em;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+      margin: 0px;
+
+    li {
+      font-size: 16px;
+      line-height: 16px;
+      color: #666;
+      font-weight: bold;
+      display: inline-block;
+      margin: 0px 5px;
+      padding: 5px 100px;
+      border-radius: 3px;
+
+      &.selected {
+        background: #fff;
+        color: black;
+      }
+
+    }
+  }
+
+}
+
+main {
+  margin-top: $headerH;
+  padding: 25px;
+  width: 100%;
+  height: calc(100% - #{$headerH});
+  overflow: scroll;
 }
 
 section {

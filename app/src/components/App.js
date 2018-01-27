@@ -30,7 +30,6 @@ export default class App extends React.Component {
 
     super();
 
-    this.initBindings();
     this.initState();
     this.initFirebase();
 
@@ -38,12 +37,6 @@ export default class App extends React.Component {
 
   }
 
-  initBindings() {
-
-    this.handleFirebaseAuthStateChange = this.handleFirebaseAuthStateChange.bind(this);
-    this.handleFirebaseLogInError      = this.handleFirebaseLogInError.bind(this);
-
-  }
   initState() {
 
     this.state = {
@@ -54,7 +47,11 @@ export default class App extends React.Component {
   }
   initFirebase() {
 
-    fireApp.auth().onAuthStateChanged(this.handleFirebaseAuthStateChange);
+    fireApp.auth().onAuthStateChanged((user) => {
+      this.setState({
+        user: user
+      })
+    });
 
   }
 
@@ -70,24 +67,6 @@ export default class App extends React.Component {
     });
 
   }
-  handleDataError(error) {
-
-    console.log(error);
-
-  }
-
-  handleFirebaseAuthStateChange(user) {
-
-    this.setState({
-      user: user
-    });
-
-  }
-  handleFirebaseLogInError(error) {
-
-    console.log(error);
-
-  }
 
 
   // Methods
@@ -97,13 +76,15 @@ export default class App extends React.Component {
     Promise.all(DATA_PATHS.map((url) => net.xhrFetch(url)))
       .then((responses) => Promise.all(responses.map((r) => r.json())))
       .then((responses) => this.handleDataLoad(responses))
-      .catch((error) => this.handleDataError(error));
+      .catch((error) => console.log(error));
 
   }
 
   logInFirebase() {
 
-    fireApp.auth().signInAnonymously().catch(this.handleFirebaseLogInError);
+    fireApp.auth().signInAnonymously().catch((error) => {
+      console.log(error)
+    });
 
   }
 
@@ -112,7 +93,11 @@ export default class App extends React.Component {
 
   componentDidMount() {
 
-    this.unsubscribeAuth = fireApp.auth().onAuthStateChanged(this.handleFirebaseAuthStateChange);
+    this.unsubscribeAuth = fireApp.auth().onAuthStateChanged((user) => {
+      this.setState({
+        user: user
+      })
+    });
 
     this.logInFirebase();
 
@@ -138,24 +123,35 @@ export default class App extends React.Component {
 
     } else {
       return (
-        <main>
+
+        <div
+          className='app'>
 
           <header>
+            <ul>
+              <li className='selected'>Edit</li>
+              <li>Track</li>
+            </ul>
             <h1>Endeavors</h1>
           </header>
 
-          <section
-            className='edit-table'>
-            <EditTable />
-          </section>
+          <main>
 
-          <section
-            className='input-forms'>
-            <ValueInput />
-            <ActivityInput />
-          </section>
+            <section
+              className='edit-table'>
+              <EditTable />
+            </section>
 
-        </main>
+            <section
+              className='input-forms'>
+              <ValueInput />
+              <ActivityInput />
+            </section>
+
+          </main>
+
+        </div>
+
       )
     }
 
