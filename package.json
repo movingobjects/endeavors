@@ -8,9 +8,15 @@
     "npm": "5.0.3"
   },
   "scripts": {
-    "clean": "rm -rf dist/*",
-    "build": "npm run clean && webpack --config config/webpack.config.js",
-    "dev": "webpack-dev-server --config config/webpack.config.js --hot --inline --open"
+    "build": "node ./scripts/build.js",
+    "dev-web": "node ./scripts/dev-web.js",
+    "enable-scripts": "node ./scripts/enable-scripts.js",
+    "package-mac": "./scripts/package-mac.sh",
+    "package-win": "./scripts/package-win.sh",
+    "reinstall-modules": "node ./scripts/reinstall-modules.js",
+    "start": "node ./scripts/start.js",
+    "watch": "node ./scripts/watch.js",
+    "wine": "./scripts/wine.sh"
   },
   "repository": {
     "type": "git",
