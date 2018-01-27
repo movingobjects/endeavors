@@ -43,7 +43,7 @@ module.exports = {
 
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        loader: 'file-loader'
+        loader: 'file-loader',
         options: {
           name: 'resources/images/[name].[ext]'
         }
@@ -51,7 +51,7 @@ module.exports = {
 
       {
         test: /\.(ttf|otf|eot|woff|woff2)$/,
-        loader: 'file-loader'
+        loader: 'file-loader',
         options: {
           name: 'resources/fonts/[name].[ext]'
         }
@@ -73,7 +73,7 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: 'node_modules/react/dist/react.js', to: 'resources/scripts/vendor/react/' },
       { from: 'node_modules/react-dom/dist/react-dom.js', to: 'resources/scripts/vendor/react/' },
-      { from: 'src/assets', to: 'assets/' },
+      { from: 'app/src/assets', to: 'assets/' },
     ]),
     new HtmlWebpackPlugin({
       filename: 'index.html',
