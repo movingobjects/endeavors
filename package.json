@@ -2,7 +2,7 @@
   "name": "endeavors",
   "version": "0.1.0",
   "description": "Track & evaluate how you spend your time",
-  "main": "index.js",
+  "main": "main.js",
   "engines": {
     "node": "8.1.2",
     "npm": "5.0.3"
