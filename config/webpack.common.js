@@ -6,15 +6,13 @@ const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plug
 module.exports = {
 
   entry: {
-    app: './src/index.js'
+    app: './app/src/entry.js'
   },
 
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, '../dist')
+    path: path.resolve(__dirname, '../app/build'),
+    filename: 'resources/scripts/[name].bundle.js'
   },
-
-  devtool: 'source-map',
 
   resolve: {
     extensions: ['.js', '.json'],
@@ -34,19 +32,29 @@ module.exports = {
       },
 
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
         exclude: /node_modules/,
-        loader: "babel-loader"
+        options: {
+          presets: ['react'],
+          plugins: ['transform-object-rest-spread'],
+        }
       },
 
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        loader: 'file-loader?name=resources/images/[name].[ext]'
+        loader: 'file-loader'
+        options: {
+          name: 'resources/images/[name].[ext]'
+        }
       },
 
       {
         test: /\.(ttf|otf|eot|woff|woff2)$/,
-        loader: 'file-loader?name=resources/fonts/[name].[ext]'
+        loader: 'file-loader'
+        options: {
+          name: 'resources/fonts/[name].[ext]'
+        }
       },
 
       {
@@ -69,7 +77,7 @@ module.exports = {
     ]),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'src/index.html'
+      template: 'app/src/index.html'
     }),
     new HtmlWebpackIncludeAssetsPlugin({
       assets: [
