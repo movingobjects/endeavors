@@ -12,7 +12,7 @@ import App from './App';
 
 // Component
 
-export default class EditTableCell extends React.Component {
+export default class CustomizeTableCell extends React.Component {
 
   // Constructor
 

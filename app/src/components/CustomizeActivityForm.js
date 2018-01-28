@@ -14,7 +14,7 @@ import App from './App';
 
 // Component
 
-export default class ActivityInput extends React.Component {
+export default class CustomizeActivityForm extends React.Component {
 
   // Constructor
 

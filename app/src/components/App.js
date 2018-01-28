@@ -49,7 +49,7 @@ export default class App extends React.Component {
       appLoaded: false,
       user: undefined,
 
-      mode: 'track'
+      mode: 'customize'
 
     }
 

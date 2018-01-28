@@ -1,0 +1,44 @@
+
+main {
+  position: absolute;
+  top: 0px;
+  left: $sidebarW;
+  width: calc(100% - #{$sidebarW});
+  height: 100%;
+
+  & > section {
+    width: 100%;
+    height: 100%;
+
+    header {
+
+      @extend %not-selectable;
+      @extend %draggable;
+
+      height: $headerH;
+      border-bottom: 1px solid #ddd;
+      position: relative;
+
+      h2 {
+        position: absolute;
+        top: 50%;
+        left: 25px;
+        transform: translate(0px, -50%);
+        margin: 0px;
+        font-size: 14px;
+        text-transform: uppercase;
+      }
+
+    }
+
+    article {
+      width: 100%;
+      height: calc(100% - #{$headerH});
+      overflow: scroll;
+      background: #f6f6f6;
+      padding: 25px;
+    }
+
+  }
+
+}

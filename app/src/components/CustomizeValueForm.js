@@ -14,7 +14,7 @@ import App from './App';
 
 // Component
 
-export default class ValueInput extends React.Component {
+export default class CustomizeValueForm extends React.Component {
 
   // Constructor
 

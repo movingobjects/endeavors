@@ -3,22 +3,11 @@
   box-sizing: border-box !important;
 }
 
-:not(input):not(textarea),
-:not(input):not(textarea)::after,
-:not(input):not(textarea)::before {
-  -webkit-user-select: none;
-  user-select: none;
-  cursor: default;
-}
-input, button, textarea, :focus {
-  outline: none;
-}
-
-input[type="submit"],
-input[type="reset"],
-input[type="button"],
-input[type="text"],
-button,
-textarea {
-  -webkit-app-region: no-drag;
+html,
+body,
+div#app,
+div.wrap-all {
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
 }

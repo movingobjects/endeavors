@@ -5,9 +5,9 @@ import * as React from 'react';
 import * as classNames from 'classnames';
 
 import App from './App';
-import EditTable from './EditTable';
-import ValueInput from './ValueInput';
-import ActivityInput from './ActivityInput';
+import CustomizeTable from './CustomizeTable';
+import CustomizeValueForm from './CustomizeValueForm';
+import CustomizeActivityForm from './CustomizeActivityForm';
 
 
 // Constants
@@ -43,25 +43,28 @@ export default class CustomizeView extends React.Component {
   render() {
 
     const classSection = classNames({
-      'customize-view': true
+      'customize': true
     })
 
     return (
       <section
         className={classSection}>
 
-        <section
-          className='edit-table'>
-          <EditTable />
-        </section>
+        <header>
+          <h2>Customize</h2>
+        </header>
 
-        <section
-          className='input-forms'>
-          <ValueInput />
-          <ActivityInput />
-        </section>
+        <article>
+
+          <CustomizeTable />
+
+          <CustomizeValueForm />
+          <CustomizeActivityForm />
+
+        </article>
 
       </section>
+
     );
 
   }

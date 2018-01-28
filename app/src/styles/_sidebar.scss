@@ -7,7 +7,9 @@ aside {
   $colorCustomize: #96f;
   $colorSettings: #f66;
 
-  -webkit-app-region: drag;
+  @extend %not-selectable;
+  @extend %draggable;
+
   position: fixed;
   top: 0px;
   left: 0px;
@@ -17,6 +19,7 @@ aside {
 
   ul {
     list-style: none;
+    margin: 0px;
     padding: 0px;
     position: absolute;
     left: 50%;
@@ -25,7 +28,7 @@ aside {
     width: calc(100% - 20px);
 
     &.main-nav {
-      top: 40px;
+      top: $headerH + 10px;
     }
 
     &.sub-nav {

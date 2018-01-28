@@ -6,7 +6,7 @@ import * as React from 'react';
 import fireApp from '../utils/fireApp';
 
 import App from './App';
-import EditTableCell from './EditTableCell';
+import CustomizeTableCell from './CustomizeTableCell';
 
 
 // Constants
@@ -14,7 +14,7 @@ import EditTableCell from './EditTableCell';
 
 // Component
 
-export default class EditTable extends React.Component {
+export default class CustomizeTable extends React.Component {
 
   // Constructor
 
@@ -153,7 +153,8 @@ export default class EditTable extends React.Component {
 
     return (
 
-      <table>
+      <table
+        className='edit-table'>
 
         <thead>
           <tr>
@@ -239,7 +240,7 @@ export default class EditTable extends React.Component {
                   ));
 
                   return (
-                    <EditTableCell
+                    <CustomizeTableCell
                       key={valKey}
                       actKey={actKey}
                       activity={activity}

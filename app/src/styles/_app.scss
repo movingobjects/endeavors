@@ -1,14 +1,31 @@
 
+// Vars
+
+$headerH: 75px;
 $sidebarW: 100px;
 
-html,
-body,
-div#app,
-div.wrap-all {
-  width: 100vw;
-  height: 100vh;
-  min-height: 100vh;
+
+// Mixins/Extends
+
+%draggable {
+  -webkit-app-region: drag;
 }
+
+%not-selectable {
+  :not(input):not(textarea),
+  :not(input):not(textarea)::after,
+  :not(input):not(textarea)::before {
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: default;
+  }
+  input, button, textarea, :focus {
+    outline: none;
+  }
+}
+
+
+// Elements
 
 body {
   font: 13px/17px $stdFont;
@@ -16,19 +33,4 @@ body {
   margin: 0px;
   padding: 0px;
   overflow: hidden;
-}
-
-
-main {
-  position: absolute;
-  top: 0px;
-  left: $sidebarW;
-  padding: 25px;
-  width: calc(100% - #{$sidebarW});
-  height: 100%;
-  overflow: scroll;
-}
-
-section {
-  margin-bottom: 40px;
 }
