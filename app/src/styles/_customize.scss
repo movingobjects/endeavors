@@ -1,9 +1,14 @@
 
 section.customize {
 
-  table.edit-table {
+  table.customize-table {
 
+    $borderColor: #ddd;
     $categoryColor: #96f;
+
+    $weight1Color: transparentize($categoryColor, 0.85);
+    $weight2Color: transparentize($categoryColor, 0.5);
+    $weight3Color: $categoryColor;
 
     border-spacing: 0;
     border-collapse: collapse;
@@ -11,12 +16,15 @@ section.customize {
 
     th,
     td {
-      border: 1px solid #ccc;
-      padding: 10px 10px;
-      width: 100px;
+      padding: 5px;
+      width: 125px;
 
       &:first-child {
         width: 200px;
+      }
+
+      &:not(:first-child) {
+        border-left: 1px dotted $borderColor;
       }
 
       a.remove-btn {
@@ -29,18 +37,30 @@ section.customize {
 
     }
 
-    thead th {
-      background-color: #eee;
-      color: #666;
-      position: relative;
+    thead tr {
 
-      a.remove-btn {
-        background-color: #eee;
-        position: absolute;
-        right: 5px;
-        top: 5px;
-        color: #aaa;
-        border-color: #aaa;
+      &:first-child {
+        th {
+          padding-bottom: 20px;
+          border: none;
+          font-weight: bold;
+          color: black;
+        }
+      }
+
+      th {
+        color: #777;
+        position: relative;
+        font-weight: normal;
+
+        a.remove-btn {
+          background-color: #eee;
+          position: absolute;
+          right: 5px;
+          top: 5px;
+          color: #aaa;
+          border-color: #aaa;
+        }
       }
 
     }
@@ -48,8 +68,9 @@ section.customize {
     tbody th:first-child {
       text-align: left;
       font-weight: normal;
-      color: #999;
+      color: #777;
       position: relative;
+      border-top: 1px dotted $borderColor;
 
       a.remove-btn {
         position: absolute;
@@ -62,13 +83,16 @@ section.customize {
 
     td {
       text-align: center;
+      border-top: 1px dotted $borderColor;
 
       input {
         border: none;
+        border-radius: 5px;
         background-color: transparent;
         text-align: center;
-        font: 13px/17px $stdFont;
+        font: bold 13px/17px $stdFont;
         width: 100%;
+        height: 30px;
         color: inherit;
 
         -webkit-tap-highlight-color: transparent;
@@ -76,7 +100,7 @@ section.customize {
 
       }
 
-      &.editing {
+      &.editing input {
         background-color: white;
         color: #90f;
         box-shadow: inset 0 0 0 3px #90f;
@@ -90,21 +114,21 @@ section.customize {
           margin: 0;
         }
 
-        &.weight-0 {
+        &.weight-0 input {
           background-color: transparent;
           color: transparent;
         }
-        &.weight-1 {
-          background-color: transparentize($categoryColor, 0.85);
-          color: darken($categoryColor, 0%);
+        &.weight-1 input {
+          background-color: $weight1Color;
+          color: mix(black, $weight1Color, 20%);
         }
-        &.weight-2 {
-          background-color: transparentize($categoryColor, 0.5);
-          color: darken($categoryColor, 5%);
+        &.weight-2 input {
+          background-color: $weight2Color;
+          color: mix(black, $weight1Color, 20%);
         }
-        &.weight-3 {
-          background-color: $categoryColor;
-          color: darken($categoryColor, 10%);
+        &.weight-3 input {
+          background-color: $weight3Color;
+          color: mix(black, $weight1Color, 20%);
         }
       }
 
@@ -135,6 +159,7 @@ section.customize {
   form {
     vertical-align: top;
     border: 1px solid #ccc;
+    border-radius: 5px;
     display: inline-block;
     padding: 10px;
     margin-right: 15px;

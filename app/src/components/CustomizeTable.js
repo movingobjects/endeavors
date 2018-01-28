@@ -154,7 +154,7 @@ export default class CustomizeTable extends React.Component {
     return (
 
       <table
-        className='edit-table'>
+        className='customize-table'>
 
         <thead>
           <tr>
@@ -182,7 +182,7 @@ export default class CustomizeTable extends React.Component {
 
           <tr>
 
-            <th>Activity</th>
+            <th />
 
             {_.map(categories, (category, catKey) => {
 

@@ -56,8 +56,10 @@ export default class CustomizeView extends React.Component {
 
         <article>
 
+          <h2>Edit Activities</h2>
           <CustomizeTable />
 
+          <h2>Add new</h2>
           <CustomizeValueForm />
           <CustomizeActivityForm />
 
