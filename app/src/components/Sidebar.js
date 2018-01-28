@@ -81,10 +81,10 @@ export default class Sidebar extends React.Component {
             onSelect={this.handleItemSelect}/>
 
           <SidebarItem
-            label='Account'
-            className='account'
-            icon='account_box'
-            selected={this.props.mode === 'account'}
+            label='Settings'
+            className='settings'
+            icon='settings_applications'
+            selected={this.props.mode === 'settings'}
             onSelect={this.handleItemSelect}/>
 
         </ul>

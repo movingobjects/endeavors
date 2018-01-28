@@ -5,7 +5,7 @@ aside {
   $colorTrack: #0cd;
   $colorEvaluate: #cf0;
   $colorCustomize: #96f;
-  $colorAccount: #f66;
+  $colorSettings: #f66;
 
   -webkit-app-region: drag;
   position: fixed;
@@ -24,7 +24,7 @@ aside {
     text-align: center;
 
     &.main-nav {
-      top: 50px;
+      top: 40px;
     }
 
     &.sub-nav {
@@ -43,7 +43,8 @@ aside {
         margin: 0px;
         color: #555;
         transition:
-          color 0.1s;
+          color 0.1s,
+          opacity 0.1s;
 
         &.icon {
           font-size: 48px;
@@ -69,8 +70,8 @@ aside {
         &.customize p.icon {
           color: $colorCustomize;
         }
-        &.account p.icon {
-          color: $colorAccount;
+        &.settings p.icon {
+          color: $colorSettings;
         }
 
         p {
@@ -79,6 +80,12 @@ aside {
           }
         }
 
+      }
+
+      &:active:not(.selected) {
+        p {
+          opacity: 0.25;
+        }
       }
 
       &.selected {
@@ -101,10 +108,10 @@ aside {
             color: mix($colorBg, $colorCustomize, 75%);
           }
         }
-        &.account {
-          background-color: $colorAccount;
+        &.settings {
+          background-color: $colorSettings;
           p.label {
-            color: mix($colorBg, $colorAccount, 75%);
+            color: mix($colorBg, $colorSettings, 75%);
           }
         }
 
@@ -115,6 +122,7 @@ aside {
       }
 
     }
+
   }
 
 }
