@@ -1,0 +1,120 @@
+
+aside {
+
+  $colorBg: #222;
+  $colorTrack: #0cd;
+  $colorEvaluate: #cf0;
+  $colorCustomize: #96f;
+  $colorAccount: #f66;
+
+  -webkit-app-region: drag;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: $sidebarW;
+  height: 100%;
+  background-color: $colorBg;
+
+  ul {
+    list-style: none;
+    padding: 0px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0px);
+    text-align: center;
+
+    &.main-nav {
+      top: 50px;
+    }
+
+    &.sub-nav {
+      bottom: 10px;
+    }
+
+    li {
+      width: 75px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      padding: 10px 0px;
+      transition:
+        background-color 0.1s;
+
+      p {
+        margin: 0px;
+        color: #555;
+        transition:
+          color 0.1s;
+
+        &.icon {
+          font-size: 48px;
+        }
+
+        &.label {
+          font-size: 10px;
+          text-transform: uppercase;
+          font-weight: bold;
+        }
+
+      }
+
+      &:hover:not(.selected) {
+        background-color: lighten($colorBg, 5%);
+
+        &.track p.icon {
+          color: $colorTrack;
+        }
+        &.evaluate p.icon {
+          color: $colorEvaluate;
+        }
+        &.customize p.icon {
+          color: $colorCustomize;
+        }
+        &.account p.icon {
+          color: $colorAccount;
+        }
+
+        p {
+          &.label {
+            color: white;
+          }
+        }
+
+      }
+
+      &.selected {
+
+        &.track {
+          background-color: $colorTrack;
+          p.label {
+            color: mix($colorBg, $colorTrack, 75%);
+          }
+        }
+        &.evaluate {
+          background-color: $colorEvaluate;
+          p.label {
+            color: mix($colorBg, $colorEvaluate, 75%);
+          }
+        }
+        &.customize {
+          background-color: $colorCustomize;
+          p.label {
+            color: mix($colorBg, $colorCustomize, 75%);
+          }
+        }
+        &.account {
+          background-color: $colorAccount;
+          p.label {
+            color: mix($colorBg, $colorAccount, 75%);
+          }
+        }
+
+        p {
+          color: black;
+        }
+
+      }
+
+    }
+  }
+
+}

@@ -8,9 +8,8 @@ import fireApp from '../utils/fireApp';
 
 import { maths, net } from 'varyd-utils';
 
-import EditTable from './EditTable';
-import ActivityInput from './ActivityInput';
-import ValueInput from './ValueInput';
+import Sidebar from './Sidebar';
+import CustomizeView from './CustomizeView';
 
 
 // Constants
@@ -30,6 +29,7 @@ export default class App extends React.Component {
 
     super();
 
+    this.initBindings();
     this.initState();
     this.initFirebase();
 
@@ -37,11 +37,20 @@ export default class App extends React.Component {
 
   }
 
+  initBindings() {
+
+    this.handleModeChange = this.handleModeChange.bind(this);
+
+  }
   initState() {
 
     this.state = {
+
       appLoaded: false,
-      user: undefined
+      user: undefined,
+
+      mode: 'track'
+
     }
 
   }
@@ -64,6 +73,14 @@ export default class App extends React.Component {
 
     this.setState({
       appLoaded: true
+    });
+
+  }
+
+  handleModeChange(newMode) {
+
+    this.setState({
+      mode: newMode
     });
 
   }
@@ -125,28 +142,17 @@ export default class App extends React.Component {
       return (
 
         <div
-          className='app'>
+          className='wrap-all'>
 
-          <header>
-            <ul>
-              <li className='selected'>Edit</li>
-              <li>Track</li>
-            </ul>
-            <h1>Endeavors</h1>
-          </header>
+          <Sidebar
+            mode={this.state.mode}
+            onModeChange={this.handleModeChange}/>
 
           <main>
 
-            <section
-              className='edit-table'>
-              <EditTable />
-            </section>
-
-            <section
-              className='input-forms'>
-              <ValueInput />
-              <ActivityInput />
-            </section>
+            {(this.state.mode === 'customize') && (
+              <CustomizeView />
+            )}
 
           </main>
 
