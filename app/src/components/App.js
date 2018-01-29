@@ -19,10 +19,6 @@ const Settings = {
   LOG_IN_AUTOMATICALLY: false
 };
 
-const DATA_PATHS = [
-  'assets/config.json'
-];
-
 
 // Class
 
@@ -36,8 +32,6 @@ export default class App extends React.Component {
 
     this.initBindings();
     this.initState();
-
-    this.loadAppData();
 
     if (Settings.LOG_IN_AUTOMATICALLY) {
       this.startFirebase();
@@ -55,7 +49,6 @@ export default class App extends React.Component {
 
     this.state = {
 
-      appLoaded: false,
       user: undefined,
 
       mode: 'track'
@@ -66,16 +59,6 @@ export default class App extends React.Component {
 
 
   // Event handlers
-
-  handleDataLoad(data) {
-
-    App.config    = data[0];
-
-    this.setState({
-      appLoaded: true
-    });
-
-  }
 
   handleLogInAnonymously() {
 
@@ -93,15 +76,6 @@ export default class App extends React.Component {
 
 
   // Methods
-
-  loadAppData() {
-
-    Promise.all(DATA_PATHS.map((url) => net.xhrFetch(url)))
-      .then((responses) => Promise.all(responses.map((r) => r.json())))
-      .then((responses) => this.handleDataLoad(responses))
-      .catch((error) => console.log(error));
-
-  }
 
   startFirebase() {
 
@@ -129,10 +103,7 @@ export default class App extends React.Component {
 
     const loggedIn = this.state.user;
 
-    if (!this.state.appLoaded) {
-      return null;
-
-    } else if (!loggedIn) {
+    if (!loggedIn) {
       return (
         <LoginView
           onLogInAnonymously={this.handleLogInAnonymously}/>
