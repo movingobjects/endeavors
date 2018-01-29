@@ -114,6 +114,10 @@ section.customize {
           margin: 0;
         }
 
+        &:hover.weight-0 input {
+          background-color: white;
+        }
+
         &.weight-0 input {
           background-color: transparent;
           color: transparent;
