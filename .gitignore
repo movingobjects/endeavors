@@ -1,4 +1,8 @@
+# Modules
 node_modules/
-.tm_properties
+
+# OS
 .DS_Store
-npm-debug.log
+
+# Project-specific
+packages/
