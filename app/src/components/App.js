@@ -8,11 +8,16 @@ import fireApp from '../utils/fireApp';
 
 import { maths, net } from 'varyd-utils';
 
+import LoginView from './LoginView';
 import Sidebar from './Sidebar';
 import CustomizeView from './CustomizeView';
 
 
 // Constants
+
+const Settings = {
+  LOG_IN_AUTOMATICALLY: false
+};
 
 const DATA_PATHS = [
   'assets/config.json'
@@ -31,15 +36,19 @@ export default class App extends React.Component {
 
     this.initBindings();
     this.initState();
-    this.initFirebase();
 
     this.loadAppData();
+
+    if (Settings.LOG_IN_AUTOMATICALLY) {
+      this.startFirebase();
+    }
 
   }
 
   initBindings() {
 
-    this.handleModeChange = this.handleModeChange.bind(this);
+    this.handleModeChange       = this.handleModeChange.bind(this);
+    this.handleLogInAnonymously = this.handleLogInAnonymously.bind(this);
 
   }
   initState() {
@@ -49,18 +58,9 @@ export default class App extends React.Component {
       appLoaded: false,
       user: undefined,
 
-      mode: 'customize'
+      mode: 'track'
 
     }
-
-  }
-  initFirebase() {
-
-    fireApp.auth().onAuthStateChanged((user) => {
-      this.setState({
-        user: user
-      })
-    });
 
   }
 
@@ -74,6 +74,12 @@ export default class App extends React.Component {
     this.setState({
       appLoaded: true
     });
+
+  }
+
+  handleLogInAnonymously() {
+
+    this.startFirebase();
 
   }
 
@@ -97,18 +103,7 @@ export default class App extends React.Component {
 
   }
 
-  logInFirebase() {
-
-    fireApp.auth().signInAnonymously().catch((error) => {
-      console.log(error)
-    });
-
-  }
-
-
-  // React
-
-  componentDidMount() {
+  startFirebase() {
 
     this.unsubscribeAuth = fireApp.auth().onAuthStateChanged((user) => {
       this.setState({
@@ -116,9 +111,11 @@ export default class App extends React.Component {
       })
     });
 
-    this.logInFirebase();
-
   }
+
+
+
+  // React
 
   componentWillUnmount() {
 
@@ -136,7 +133,10 @@ export default class App extends React.Component {
       return null;
 
     } else if (!loggedIn) {
-      return null; // TODO: splash screen component
+      return (
+        <LoginView
+          onLogInAnonymously={this.handleLogInAnonymously}/>
+      );
 
     } else {
       return (

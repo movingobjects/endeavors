@@ -11,6 +11,10 @@ $sidebarW: 100px;
   -webkit-app-region: drag;
 }
 
+%not-draggable {
+  -webkit-app-region: no-drag;
+}
+
 %not-selectable {
   :not(input):not(textarea),
   :not(input):not(textarea)::after,
