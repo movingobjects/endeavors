@@ -12,6 +12,7 @@ app.on('ready', () => {
     height: 750,
     minHeight: 750,
     minWidth: 1100,
+    backgroundColor: '#222',
     titleBarStyle: 'hidden-inset'
   });
 

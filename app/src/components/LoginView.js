@@ -37,7 +37,7 @@ export default class LoginView extends React.Component {
   // Event handlers
 
   handleLogInClick() {
-    this.props.onLogInAnonymously();
+    this.props.onLogIn();
   }
 
 

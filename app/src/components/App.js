@@ -41,8 +41,8 @@ export default class App extends React.Component {
 
   initBindings() {
 
-    this.handleModeChange       = this.handleModeChange.bind(this);
-    this.handleLogInAnonymously = this.handleLogInAnonymously.bind(this);
+    this.handleModeChange = this.handleModeChange.bind(this);
+    this.handleLogIn      = this.handleLogIn.bind(this);
 
   }
   initState() {
@@ -60,7 +60,7 @@ export default class App extends React.Component {
 
   // Event handlers
 
-  handleLogInAnonymously() {
+  handleLogIn() {
 
     this.startFirebase();
 
@@ -106,7 +106,7 @@ export default class App extends React.Component {
     if (!loggedIn) {
       return (
         <LoginView
-          onLogInAnonymously={this.handleLogInAnonymously}/>
+          onLogIn={this.handleLogIn}/>
       );
 
     } else {
