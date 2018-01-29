@@ -10,7 +10,11 @@ import { maths, net } from 'varyd-utils';
 
 import LoginView from './LoginView';
 import Sidebar from './Sidebar';
+
+import TrackView from './TrackView';
+import EvaluateView from './EvaluateView';
 import CustomizeView from './CustomizeView';
+import SettingsView from './SettingsView';
 
 
 // Constants
@@ -101,36 +105,48 @@ export default class App extends React.Component {
 
   render() {
 
-    const loggedIn = this.state.user;
+    if (!this.state.user) return (
+      <LoginView
+        onLogIn={this.handleLogIn}/>
+    );
 
-    if (!loggedIn) {
-      return (
-        <LoginView
-          onLogIn={this.handleLogIn}/>
-      );
+    const isTrack     = this.state.mode === 'track',
+          isEvaluate  = this.state.mode === 'evaluate',
+          isCustomize = this.state.mode === 'customize',
+          isSettings  = this.state.mode === 'settings';
 
-    } else {
-      return (
+    return (
 
-        <div
-          className='wrap-all'>
+      <div
+        className='wrap-all'>
 
-          <Sidebar
-            mode={this.state.mode}
-            onModeChange={this.handleModeChange}/>
+        <Sidebar
+          mode={this.state.mode}
+          onModeChange={this.handleModeChange}/>
 
-          <main>
+        <main>
 
-            {(this.state.mode === 'customize') && (
-              <CustomizeView />
-            )}
+          {isTrack && (
+            <TrackView />
+          )}
 
-          </main>
+          {isEvaluate && (
+            <EvaluateView />
+          )}
 
-        </div>
+          {isCustomize && (
+            <CustomizeView />
+          )}
 
-      )
-    }
+          {isSettings && (
+            <SettingsView />
+          )}
+
+        </main>
+
+      </div>
+
+    );
 
   }
 
