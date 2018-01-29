@@ -38,15 +38,15 @@ export default class App extends React.Component {
     this.initState();
 
     if (Settings.LOG_IN_AUTOMATICALLY) {
-      this.startFirebase();
+      this.logInFirebase();
     }
 
   }
 
   initBindings() {
 
-    this.handleModeChange = this.handleModeChange.bind(this);
-    this.handleLogIn      = this.handleLogIn.bind(this);
+    this.handleModeChange  = this.handleModeChange.bind(this);
+    this.handleLogInSelect = this.handleLogInSelect.bind(this);
 
   }
   initState() {
@@ -64,9 +64,9 @@ export default class App extends React.Component {
 
   // Event handlers
 
-  handleLogIn() {
+  handleLogInSelect() {
 
-    this.startFirebase();
+    this.logInFirebase();
 
   }
 
@@ -81,7 +81,7 @@ export default class App extends React.Component {
 
   // Methods
 
-  startFirebase() {
+  logInFirebase() {
 
     this.unsubscribeAuth = fireApp.auth().onAuthStateChanged((user) => {
       this.setState({
@@ -89,8 +89,11 @@ export default class App extends React.Component {
       })
     });
 
-  }
+    fireApp.auth().signInAnonymously().catch((error) => {
+      console.log(error)
+    });
 
+  }
 
 
   // React
@@ -107,7 +110,7 @@ export default class App extends React.Component {
 
     if (!this.state.user) return (
       <LoginView
-        onLogIn={this.handleLogIn}/>
+        onLogInSelect={this.handleLogInSelect}/>
     );
 
     const isTrack     = this.state.mode === 'track',
