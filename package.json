@@ -1,6 +1,6 @@
 {
   "name": "endeavors",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Track & evaluate how you spend your time",
   "main": "main.js",
   "engines": {
@@ -52,11 +52,12 @@
     "classnames": "^2.2.5",
     "electron-reload": "^1.2.2",
     "firebase": "4.6.0",
+    "fs-extra": "^5.0.0",
     "lodash": "4.17.4",
-    "mkdirp": "^0.5.1",
+    "log-box": "^0.4.3",
+    "minimist": "^1.2.0",
     "react": "15.6.1",
     "react-dom": "15.6.1",
-    "rimraf": "^2.6.2",
     "varyd-utils": "^0.6.5"
   }
 }
