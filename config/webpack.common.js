@@ -15,7 +15,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.json'],
+    extensions: ['.js', '.jsx', '.json'],
     modules: [
       path.resolve(__dirname),
       'node_modules'
@@ -26,7 +26,7 @@ module.exports = {
     rules: [
 
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         enforce: 'pre',
         loader: 'source-map-loader'
       },
