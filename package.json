@@ -59,5 +59,12 @@
     "react": "15.6.1",
     "react-dom": "15.6.1",
     "varyd-utils": "^0.6.5"
+  },
+  "log-box": {
+    "default": {
+      "color": "#33f",
+      "textColor": "#33f",
+      "style": "round"
+    }
   }
 }
