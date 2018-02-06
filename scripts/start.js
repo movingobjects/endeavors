@@ -1,17 +1,14 @@
 
 // Requires
 
-const colors       = require('colors'),
-      rimraf       = require('rimraf'),
-      { execSync } = require('child_process');
+const { execSync } = require('child_process'),
+      logBox       = require('log-box');
 
 
 // Script
 
-console.log(`\nStarting Electron...\n`.cyan);
+logBox(`Starting Electron`);
 
 execSync(`electron .`, {
   stdio: 'inherit'
 });
-
-console.log(`\nComplete.\n`.cyan);

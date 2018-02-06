@@ -8,15 +8,15 @@
     "npm": "5.0.3"
   },
   "scripts": {
-    "reinstall-modules": "node ./scripts/reinstall-modules.js",
-    "enable-scripts": "node ./scripts/enable-scripts.js",
-    "dev": "node ./scripts/dev-browser.js",
     "build": "node ./scripts/build.js",
-    "watch": "node ./scripts/watch.js",
+    "build:web": "node ./scripts/build.js -b",
+    "dev": "node ./scripts/build.js -w",
+    "dev:web": "node ./scripts/build.js -wb",
     "start": "node ./scripts/start.js",
-    "package-mac": "./scripts/package-mac.sh",
-    "package-win": "./scripts/package-win.sh",
-    "wine": "./scripts/wine.sh"
+    "package:win": "node ./scripts/package.js -w",
+    "package": "node ./scripts/package.js",
+    "enable-scripts": "chmod +x ./scripts/*",
+    "reinstall": "rm -rf node_modules; npm i"
   },
   "repository": {
     "type": "git",
