@@ -6,7 +6,7 @@ const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plug
 module.exports = {
 
   entry: {
-    app: './app/src/entry.jsx'
+    app: './app/src/entry.js'
   },
 
   output: {
