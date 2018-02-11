@@ -5,9 +5,6 @@ import * as React from 'react';
 import * as _ from 'lodash';
 import firebase from 'firebase/app';
 
-import 'firebase/auth';
-import 'firebase/database';
-
 import { maths, net } from 'varyd-utils';
 
 import LoginView from './LoginView';
@@ -53,19 +50,6 @@ export default class App extends React.Component {
 
   }
   initFirebase() {
-
-    firebase.initializeApp({
-      apiKey: "AIzaSyCfceUvLUQrPJTWx-OBN82FtEZe3DKEfNs",
-      authDomain: "endeavorsssss.firebaseapp.com",
-      databaseURL: "https://endeavorsssss.firebaseio.com",
-      projectId: "endeavorsssss",
-      storageBucket: "endeavorsssss.appspot.com",
-      messagingSenderId: "589591316736"
-    });
-
-    // TODO: remove, this prevents session from continuing after
-    // window is closed
-    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
 
     this.unsubscribeAuth = firebase.auth().onAuthStateChanged((user) => {
       this.setState({
