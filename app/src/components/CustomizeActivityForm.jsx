@@ -92,7 +92,7 @@ export default class CustomizeActivityForm extends React.Component {
 
   componentDidMount() {
 
-    const userId  = 'default';
+    const userId  = firebase.auth().currentUser.uid;
 
     this.activitiesRef = firebase.database().ref(`activities/${userId}`);
 

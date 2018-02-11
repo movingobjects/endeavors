@@ -27,7 +27,8 @@ function initFirebase() {
 
   // TODO: remove, this prevents session from continuing after
   // window is closed
-  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
+  //firebase.auth().signOut();
+  //firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
 
 }
 

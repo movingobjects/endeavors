@@ -1,27 +1,41 @@
 
 const { app, BrowserWindow } = require('electron');
+const electronReload = require('electron-reload');
 
-require('electron-reload')(__dirname + '/app/build/');
+const server = require('./server');
 
-let win; // (prevents garbage collection)
+const PORT = 3007;
 
-app.on('ready', () => {
+let win;
 
-  win = new BrowserWindow({
-    width: 1100,
-    height: 750,
-    minHeight: 750,
-    minWidth: 1100,
-    backgroundColor: '#222',
-    titleBarStyle: 'hidden-inset'
+electronReload(__dirname + '/app/build/');
+
+server.start(PORT, initApp);
+
+function initApp() {
+
+  app.on('ready', () => {
+
+    win = new BrowserWindow({
+      width: 1100,
+      height: 750,
+      minHeight: 750,
+      minWidth: 1100,
+      backgroundColor: '#222',
+      titleBarStyle: 'hidden-inset',
+      webPreferences: {
+        nativeWindowOpen: true
+      }
+    });
+
+    win.loadURL(`http://localhost:${PORT}`);
+
   });
 
-  win.loadURL(`file://${__dirname}/app/build/index.html`);
+  app.on('window-all-closed', () => {
 
-});
+    app.quit();
 
-app.on('window-all-closed', () => {
+  });
 
-  app.quit();
-
-});
+}

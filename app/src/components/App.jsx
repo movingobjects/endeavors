@@ -55,9 +55,21 @@ export default class App extends React.Component {
 
   // Event handlers
 
+  handleModeChange = (newMode) => {
+
+    this.setState({
+      mode: newMode
+    });
+
+  }
+
   handleGoogleLoginClick = () => {
 
-    console.log(`Google login!`);
+    let provider = new firebase.auth.GoogleAuthProvider();
+
+    firebase.auth().signInWithPopup(provider)
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
 
   }
   handleAnonymousLoginClick = () => {
@@ -68,21 +80,8 @@ export default class App extends React.Component {
 
   }
 
-  handleModeChange = (newMode) => {
-
-    this.setState({
-      mode: newMode
-    });
-
-  }
-
 
   // Methods
-
-  logInFirebase() {
-
-
-  }
 
 
   // React

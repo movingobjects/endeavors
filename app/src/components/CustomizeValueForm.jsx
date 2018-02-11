@@ -41,7 +41,7 @@ export default class CustomizeValueForm extends React.Component {
 
   handleCategoriesValue = (data) => {
 
-    const categories     = data.val(),
+    const categories     = data.val() ? data.val() : { },
           hasValCategory = this.state.valCategory && this.state.valCategory.length,
           valCategory    = hasValCategory ? this.state.valCategory : _.keys(categories)[0];
 
@@ -111,7 +111,7 @@ export default class CustomizeValueForm extends React.Component {
 
   componentDidMount() {
 
-    const userId  = 'default';
+    const userId  = firebase.auth().currentUser.uid;
 
     this.categoriesRef = firebase.database().ref(`categories/${userId}`);
     this.valuesRef     = firebase.database().ref(`values/${userId}`);

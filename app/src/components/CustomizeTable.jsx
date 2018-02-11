@@ -42,21 +42,21 @@ export default class CustomizeTable extends React.Component {
   handleCategoriesValue = (data) => {
 
     this.setState({
-      categories: data.val()
+      categories: data.val() ? data.val() : { }
     });
 
   }
   handleValuesValue = (data) => {
 
     this.setState({
-      values: data.val()
+      values: data.val() ? data.val() : { }
     });
 
   }
   handleActivitiesValue = (data) => {
 
     this.setState({
-      activities: data.val()
+      activities: data.val() ? data.val() : { }
     });
 
   }
@@ -105,7 +105,7 @@ export default class CustomizeTable extends React.Component {
 
   componentDidMount() {
 
-    const userId  = 'default';
+    const userId  = firebase.auth().currentUser.uid;
 
     this.categoriesRef = firebase.database().ref(`categories/${userId}`);
     this.valuesRef     = firebase.database().ref(`values/${userId}`);
@@ -131,14 +131,23 @@ export default class CustomizeTable extends React.Component {
           values     = this.state.values,
           activities = this.state.activities;
 
-    const hasAllData =
-      !_.isEmpty(categories) &&
-      !_.isEmpty(values) &&
-      !_.isEmpty(activities);
+    const dataLoaded =
+      categories !== undefined &&
+      values !== undefined &&
+      activities !== undefined;
 
-    if (!hasAllData) {
+    const noData =
+      _.isEmpty(categories) &&
+      _.isEmpty(values) &&
+      _.isEmpty(activities);
+
+    if (!dataLoaded) {
       return (
         <p>Loading...</p>
+      );
+    } else if (noData) {
+      return (
+        <p>No data</p>
       );
     }
 
