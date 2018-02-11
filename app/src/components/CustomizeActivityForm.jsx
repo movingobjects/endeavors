@@ -22,17 +22,10 @@ export default class CustomizeActivityForm extends React.Component {
 
     super();
 
-    this.initBindings();
     this.initState();
 
   }
 
-  initBindings() {
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit      = this.handleSubmit.bind(this);
-
-  }
   initState() {
 
     this.state = {
@@ -44,14 +37,14 @@ export default class CustomizeActivityForm extends React.Component {
 
   // Event handlers
 
-  handleInputChange(e) {
+  handleInputChange = (e) => {
 
     this.setState({
       [e.currentTarget.name]: e.currentTarget.value
     })
 
   }
-  handleSubmit(e) {
+  handleSubmit = (e) => {
 
     e.preventDefault();
 
@@ -72,6 +65,7 @@ export default class CustomizeActivityForm extends React.Component {
     }
 
   }
+
 
   // Methods
 

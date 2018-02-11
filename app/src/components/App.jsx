@@ -29,20 +29,11 @@ export default class App extends React.Component {
 
     super();
 
-    this.initBindings();
     this.initState();
     this.initFirebase();
 
   }
 
-  initBindings() {
-
-    this.handleModeChange          = this.handleModeChange.bind(this);
-
-    this.handleGoogleLoginClick    = this.handleGoogleLoginClick.bind(this);
-    this.handleAnonymousLoginClick = this.handleAnonymousLoginClick.bind(this);
-
-  }
   initState() {
 
     this.state = {
@@ -64,12 +55,12 @@ export default class App extends React.Component {
 
   // Event handlers
 
-  handleGoogleLoginClick() {
+  handleGoogleLoginClick = () => {
 
     console.log(`Google login!`);
 
   }
-  handleAnonymousLoginClick() {
+  handleAnonymousLoginClick = () => {
 
     firebase.auth().signInAnonymously().catch((error) => {
       console.log(error)
@@ -77,7 +68,7 @@ export default class App extends React.Component {
 
   }
 
-  handleModeChange(newMode) {
+  handleModeChange = (newMode) => {
 
     this.setState({
       mode: newMode

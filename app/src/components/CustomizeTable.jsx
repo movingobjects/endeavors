@@ -22,19 +22,10 @@ export default class CustomizeTable extends React.Component {
 
     super();
 
-    this.initBindings();
     this.initState();
 
   }
 
-  initBindings() {
-
-    this.handleCategoriesValue = this.handleCategoriesValue.bind(this);
-    this.handleValuesValue     = this.handleValuesValue.bind(this);
-    this.handleActivitiesValue = this.handleActivitiesValue.bind(this);
-    this.handleWeightChange    = this.handleWeightChange.bind(this);
-
-  }
   initState() {
 
     this.state = {
@@ -48,21 +39,21 @@ export default class CustomizeTable extends React.Component {
 
   // Event handlers
 
-  handleCategoriesValue(data) {
+  handleCategoriesValue = (data) => {
 
     this.setState({
       categories: data.val()
     });
 
   }
-  handleValuesValue(data) {
+  handleValuesValue = (data) => {
 
     this.setState({
       values: data.val()
     });
 
   }
-  handleActivitiesValue(data) {
+  handleActivitiesValue = (data) => {
 
     this.setState({
       activities: data.val()
@@ -70,7 +61,7 @@ export default class CustomizeTable extends React.Component {
 
   }
 
-  handleWeightChange(actKey, valLinkKey, weight) {
+  handleWeightChange = (actKey, valLinkKey, weight) => {
 
     weight  = Math.min(3, Math.max(0, weight));
 

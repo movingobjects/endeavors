@@ -23,25 +23,20 @@ export default class LoginView extends React.Component {
 
     super();
 
-    this.initBindings();
     this.initState();
 
   }
 
-  initBindings() {
-    this.handleAnonymousLoginClick = this.handleAnonymousLoginClick.bind(this);
-    this.handleGoogleLoginClick    = this.handleGoogleLoginClick.bind(this);
-  }
   initState() { }
 
 
   // Event handlers
 
-  handleAnonymousLoginClick() {
+  handleAnonymousLoginClick = () => {
     this.props.onAnonymousLoginClick();
   }
 
-  handleGoogleLoginClick() {
+  handleGoogleLoginClick = () => {
     this.props.onGoogleLoginClick();
   }
 

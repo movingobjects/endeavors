@@ -23,12 +23,10 @@ export default class CustomizeView extends React.Component {
 
     super();
 
-    this.initBindings();
     this.initState();
 
   }
 
-  initBindings() { }
   initState() { }
 
 

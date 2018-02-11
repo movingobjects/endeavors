@@ -22,19 +22,10 @@ export default class CustomizeValueForm extends React.Component {
 
     super();
 
-    this.initBindings();
     this.initState();
 
   }
 
-  initBindings() {
-
-    this.handleCategoriesValue = this.handleCategoriesValue.bind(this);
-
-    this.handleInputChange     = this.handleInputChange.bind(this);
-    this.handleSubmit          = this.handleSubmit.bind(this);
-
-  }
   initState() {
 
     this.state = {
@@ -48,7 +39,7 @@ export default class CustomizeValueForm extends React.Component {
 
   // Event handlers
 
-  handleCategoriesValue(data) {
+  handleCategoriesValue = (data) => {
 
     const categories     = data.val(),
           hasValCategory = this.state.valCategory && this.state.valCategory.length,
@@ -60,16 +51,14 @@ export default class CustomizeValueForm extends React.Component {
     });
 
   }
-
-
-  handleInputChange(e) {
+  handleInputChange = (e) => {
 
     this.setState({
       [e.currentTarget.name]: e.currentTarget.value
     })
 
   }
-  handleSubmit(e) {
+  handleSubmit = (e) => {
 
     e.preventDefault();
 
@@ -91,6 +80,7 @@ export default class CustomizeValueForm extends React.Component {
     }
 
   }
+
 
   // Methods
 
