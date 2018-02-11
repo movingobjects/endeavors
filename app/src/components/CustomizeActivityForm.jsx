@@ -4,7 +4,7 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 
-import fireApp from '../utils/fireApp';
+import firebase from 'firebase/app';
 
 import App from './App';
 
@@ -100,7 +100,7 @@ export default class CustomizeActivityForm extends React.Component {
 
     const userId  = 'default';
 
-    this.activitiesRef = fireApp.database().ref(`activities/${userId}`);
+    this.activitiesRef = firebase.database().ref(`activities/${userId}`);
 
   }
 

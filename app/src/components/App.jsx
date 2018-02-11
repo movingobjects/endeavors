@@ -3,8 +3,10 @@
 
 import * as React from 'react';
 import * as _ from 'lodash';
+import firebase from 'firebase/app';
 
-import fireApp from '../utils/fireApp';
+import 'firebase/auth';
+import 'firebase/database';
 
 import { maths, net } from 'varyd-utils';
 
@@ -19,10 +21,6 @@ import SettingsView from './SettingsView';
 
 // Constants
 
-const Settings = {
-  LOG_IN_AUTOMATICALLY: false
-};
-
 
 // Class
 
@@ -36,10 +34,7 @@ export default class App extends React.Component {
 
     this.initBindings();
     this.initState();
-
-    if (Settings.LOG_IN_AUTOMATICALLY) {
-      this.logInFirebase();
-    }
+    this.initFirebase();
 
   }
 
@@ -52,12 +47,31 @@ export default class App extends React.Component {
   initState() {
 
     this.state = {
-
       user: undefined,
-
       mode: 'track'
-
     }
+
+  }
+  initFirebase() {
+
+    firebase.initializeApp({
+      apiKey: "AIzaSyCfceUvLUQrPJTWx-OBN82FtEZe3DKEfNs",
+      authDomain: "endeavorsssss.firebaseapp.com",
+      databaseURL: "https://endeavorsssss.firebaseio.com",
+      projectId: "endeavorsssss",
+      storageBucket: "endeavorsssss.appspot.com",
+      messagingSenderId: "589591316736"
+    });
+
+    // TODO: remove, this prevents session from continuing after
+    // window is closed
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
+
+    this.unsubscribeAuth = firebase.auth().onAuthStateChanged((user) => {
+      this.setState({
+        user: user
+      })
+    });
 
   }
 
@@ -83,13 +97,7 @@ export default class App extends React.Component {
 
   logInFirebase() {
 
-    this.unsubscribeAuth = fireApp.auth().onAuthStateChanged((user) => {
-      this.setState({
-        user: user
-      })
-    });
-
-    fireApp.auth().signInAnonymously().catch((error) => {
+    firebase.auth().signInAnonymously().catch((error) => {
       console.log(error)
     });
 

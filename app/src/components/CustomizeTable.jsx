@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 
-import fireApp from '../utils/fireApp';
+import firebase from 'firebase/app';
 
 import App from './App';
 import CustomizeTableCell from './CustomizeTableCell';
@@ -116,9 +116,9 @@ export default class CustomizeTable extends React.Component {
 
     const userId  = 'default';
 
-    this.categoriesRef = fireApp.database().ref(`categories/${userId}`);
-    this.valuesRef     = fireApp.database().ref(`values/${userId}`);
-    this.activitiesRef = fireApp.database().ref(`activities/${userId}`);
+    this.categoriesRef = firebase.database().ref(`categories/${userId}`);
+    this.valuesRef     = firebase.database().ref(`values/${userId}`);
+    this.activitiesRef = firebase.database().ref(`activities/${userId}`);
 
     this.categoriesRef.on('value', this.handleCategoriesValue);
     this.valuesRef.on('value', this.handleValuesValue);
