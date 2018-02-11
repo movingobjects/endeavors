@@ -6,6 +6,7 @@ import * as classNames from 'classnames';
 
 import App from './App';
 import CustomizeTable from './CustomizeTable';
+import CustomizeCategoryForm from './CustomizeCategoryForm';
 import CustomizeValueForm from './CustomizeValueForm';
 import CustomizeActivityForm from './CustomizeActivityForm';
 
@@ -58,6 +59,7 @@ export default class CustomizeView extends React.Component {
           <CustomizeTable />
 
           <h2>Add new</h2>
+          <CustomizeCategoryForm />
           <CustomizeValueForm />
           <CustomizeActivityForm />
 
