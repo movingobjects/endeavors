@@ -29,15 +29,20 @@ export default class LoginView extends React.Component {
   }
 
   initBindings() {
-    this.handleLogInClick = this.handleLogInClick.bind(this);
+    this.handleAnonymousLoginClick = this.handleAnonymousLoginClick.bind(this);
+    this.handleGoogleLoginClick    = this.handleGoogleLoginClick.bind(this);
   }
   initState() { }
 
 
   // Event handlers
 
-  handleLogInClick() {
-    this.props.onLogInSelect();
+  handleAnonymousLoginClick() {
+    this.props.onAnonymousLoginClick();
+  }
+
+  handleGoogleLoginClick() {
+    this.props.onGoogleLoginClick();
   }
 
 
@@ -64,7 +69,14 @@ export default class LoginView extends React.Component {
 
           <p>
             <button
-              onClick={this.handleLogInClick}>
+              onClick={this.handleGoogleLoginClick}>
+              Log in with Google
+            </button>
+          </p>
+
+          <p>
+            <button
+              onClick={this.handleAnonymousLoginClick}>
               Log in Anonymously
             </button>
           </p>

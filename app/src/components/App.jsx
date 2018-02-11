@@ -37,8 +37,10 @@ export default class App extends React.Component {
 
   initBindings() {
 
-    this.handleModeChange  = this.handleModeChange.bind(this);
-    this.handleLogInSelect = this.handleLogInSelect.bind(this);
+    this.handleModeChange          = this.handleModeChange.bind(this);
+
+    this.handleGoogleLoginClick    = this.handleGoogleLoginClick.bind(this);
+    this.handleAnonymousLoginClick = this.handleAnonymousLoginClick.bind(this);
 
   }
   initState() {
@@ -62,9 +64,16 @@ export default class App extends React.Component {
 
   // Event handlers
 
-  handleLogInSelect() {
+  handleGoogleLoginClick() {
 
-    this.logInFirebase();
+    console.log(`Google login!`);
+
+  }
+  handleAnonymousLoginClick() {
+
+    firebase.auth().signInAnonymously().catch((error) => {
+      console.log(error)
+    });
 
   }
 
@@ -81,9 +90,6 @@ export default class App extends React.Component {
 
   logInFirebase() {
 
-    firebase.auth().signInAnonymously().catch((error) => {
-      console.log(error)
-    });
 
   }
 
@@ -102,7 +108,8 @@ export default class App extends React.Component {
 
     if (!this.state.user) return (
       <LoginView
-        onLogInSelect={this.handleLogInSelect}/>
+        onGoogleLoginClick={this.handleGoogleLoginClick}
+        onAnonymousLoginClick={this.handleAnonymousLoginClick}/>
     );
 
     const isTrack     = this.state.mode === 'track',
