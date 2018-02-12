@@ -20,12 +20,10 @@ export default class SettingsView extends React.Component {
 
     super();
 
-    this.initBindings();
     this.initState();
 
   }
 
-  initBindings() { }
   initState() { }
 
 

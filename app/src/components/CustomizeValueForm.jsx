@@ -4,7 +4,7 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 
-import fireApp from '../utils/fireApp';
+import firebase from 'firebase/app';
 
 import App from './App';
 
@@ -22,19 +22,10 @@ export default class CustomizeValueForm extends React.Component {
 
     super();
 
-    this.initBindings();
     this.initState();
 
   }
 
-  initBindings() {
-
-    this.handleCategoriesValue = this.handleCategoriesValue.bind(this);
-
-    this.handleInputChange     = this.handleInputChange.bind(this);
-    this.handleSubmit          = this.handleSubmit.bind(this);
-
-  }
   initState() {
 
     this.state = {
@@ -48,9 +39,9 @@ export default class CustomizeValueForm extends React.Component {
 
   // Event handlers
 
-  handleCategoriesValue(data) {
+  handleCategoriesValue = (data) => {
 
-    const categories     = data.val(),
+    const categories     = data.val() ? data.val() : { },
           hasValCategory = this.state.valCategory && this.state.valCategory.length,
           valCategory    = hasValCategory ? this.state.valCategory : _.keys(categories)[0];
 
@@ -60,16 +51,14 @@ export default class CustomizeValueForm extends React.Component {
     });
 
   }
-
-
-  handleInputChange(e) {
+  handleInputChange = (e) => {
 
     this.setState({
       [e.currentTarget.name]: e.currentTarget.value
     })
 
   }
-  handleSubmit(e) {
+  handleSubmit = (e) => {
 
     e.preventDefault();
 
@@ -91,6 +80,7 @@ export default class CustomizeValueForm extends React.Component {
     }
 
   }
+
 
   // Methods
 
@@ -121,10 +111,10 @@ export default class CustomizeValueForm extends React.Component {
 
   componentDidMount() {
 
-    const userId  = 'default';
+    const userId  = firebase.auth().currentUser.uid;
 
-    this.categoriesRef = fireApp.database().ref(`categories/${userId}`);
-    this.valuesRef     = fireApp.database().ref(`values/${userId}`);
+    this.categoriesRef = firebase.database().ref(`categories/${userId}`);
+    this.valuesRef     = firebase.database().ref(`values/${userId}`);
 
     this.categoriesRef.on('value', this.handleCategoriesValue);
 

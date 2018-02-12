@@ -20,18 +20,10 @@ export default class CustomizeTableCell extends React.Component {
 
     super();
 
-    this.initBindings();
     this.initState();
 
   }
 
-  initBindings() {
-
-    this.handleWeightChange = this.handleWeightChange.bind(this);
-    this.handleInputFocus   = this.handleInputFocus.bind(this);
-    this.handleInputBlur    = this.handleInputBlur.bind(this);
-
-  }
   initState() {
 
     this.state = {
@@ -42,20 +34,20 @@ export default class CustomizeTableCell extends React.Component {
 
   // Event handlers
 
-  handleInputFocus(e) {
+  handleInputFocus = (e) => {
 
     this.setState({
       editing: true
     });
 
   }
-  handleInputBlur(e) {
+  handleInputBlur = (e) => {
     this.setState({
       editing: false
     });
   }
 
-  handleWeightChange(e) {
+  handleWeightChange = (e) => {
 
     const actKey     = this.props.actKey,
           valLinkKey = this.props.valLinkKey,

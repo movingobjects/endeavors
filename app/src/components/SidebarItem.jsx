@@ -20,22 +20,16 @@ export default class SidebarItem extends React.Component {
 
     super();
 
-    this.initBindings();
     this.initState();
 
   }
 
-  initBindings() {
-
-    this.handleClick = this.handleClick.bind(this);
-
-  }
   initState() { }
 
 
   // Event handlers
 
-  handleClick(e) {
+  handleClick = (e) => {
     this.props.onSelect(this.props.className);
   }
 

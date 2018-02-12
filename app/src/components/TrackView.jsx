@@ -20,12 +20,10 @@ export default class TrackView extends React.Component {
 
     super();
 
-    this.initBindings();
     this.initState();
 
   }
 
-  initBindings() { }
   initState() { }
 
 

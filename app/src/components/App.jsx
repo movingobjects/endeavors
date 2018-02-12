@@ -3,8 +3,7 @@
 
 import * as React from 'react';
 import * as _ from 'lodash';
-
-import fireApp from '../utils/fireApp';
+import firebase from 'firebase/app';
 
 import { maths, net } from 'varyd-utils';
 
@@ -19,10 +18,6 @@ import SettingsView from './SettingsView';
 
 // Constants
 
-const Settings = {
-  LOG_IN_AUTOMATICALLY: false
-};
-
 
 // Class
 
@@ -34,43 +29,33 @@ export default class App extends React.Component {
 
     super();
 
-    this.initBindings();
     this.initState();
-
-    if (Settings.LOG_IN_AUTOMATICALLY) {
-      this.logInFirebase();
-    }
+    this.initFirebase();
 
   }
 
-  initBindings() {
-
-    this.handleModeChange  = this.handleModeChange.bind(this);
-    this.handleLogInSelect = this.handleLogInSelect.bind(this);
-
-  }
   initState() {
 
     this.state = {
-
       user: undefined,
-
       mode: 'track'
-
     }
+
+  }
+  initFirebase() {
+
+    this.unsubscribeAuth = firebase.auth().onAuthStateChanged((user) => {
+      this.setState({
+        user: user
+      })
+    });
 
   }
 
 
   // Event handlers
 
-  handleLogInSelect() {
-
-    this.logInFirebase();
-
-  }
-
-  handleModeChange(newMode) {
+  handleModeChange = (newMode) => {
 
     this.setState({
       mode: newMode
@@ -78,22 +63,25 @@ export default class App extends React.Component {
 
   }
 
+  handleGoogleLoginClick = () => {
 
-  // Methods
+    let provider = new firebase.auth.GoogleAuthProvider();
 
-  logInFirebase() {
+    firebase.auth().signInWithPopup(provider)
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
 
-    this.unsubscribeAuth = fireApp.auth().onAuthStateChanged((user) => {
-      this.setState({
-        user: user
-      })
-    });
+  }
+  handleAnonymousLoginClick = () => {
 
-    fireApp.auth().signInAnonymously().catch((error) => {
+    firebase.auth().signInAnonymously().catch((error) => {
       console.log(error)
     });
 
   }
+
+
+  // Methods
 
 
   // React
@@ -110,7 +98,8 @@ export default class App extends React.Component {
 
     if (!this.state.user) return (
       <LoginView
-        onLogInSelect={this.handleLogInSelect}/>
+        onGoogleLoginClick={this.handleGoogleLoginClick}
+        onAnonymousLoginClick={this.handleAnonymousLoginClick}/>
     );
 
     const isTrack     = this.state.mode === 'track',

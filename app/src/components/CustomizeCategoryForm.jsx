@@ -14,7 +14,7 @@ import App from './App';
 
 // Component
 
-export default class CustomizeActivityForm extends React.Component {
+export default class CustomizeCategoryForm extends React.Component {
 
   // Constructor
 
@@ -50,11 +50,11 @@ export default class CustomizeActivityForm extends React.Component {
 
     if (this.validate()) {
 
-      const activity  = {
+      const category  = {
         label: this.state.valLabel
       };
 
-      this.activitiesRef.push(activity, (error) => {
+      this.categoriesRef.push(category, (error) => {
 
         if (!error) {
           this.clearInput();
@@ -94,7 +94,7 @@ export default class CustomizeActivityForm extends React.Component {
 
     const userId  = firebase.auth().currentUser.uid;
 
-    this.activitiesRef = firebase.database().ref(`activities/${userId}`);
+    this.categoriesRef = firebase.database().ref(`categories/${userId}`);
 
   }
 
@@ -102,19 +102,19 @@ export default class CustomizeActivityForm extends React.Component {
 
     return (
       <form
-        className='activity-input'
+        className='category-input'
         onSubmit={this.handleSubmit}>
 
-        <h3>Add Activity</h3>
+        <h3>Add Category</h3>
 
         <p>
           <label
-            htmlFor='activity-input-label'>Label</label>
+            htmlFor='category-input-label'>Label</label>
         </p>
 
         <p>
           <input
-            id='activity-input-label'
+            id='category-input-label'
             type='text'
             name='valLabel'
             value={this.state.valLabel}
@@ -123,7 +123,7 @@ export default class CustomizeActivityForm extends React.Component {
 
         <p>
           <input
-            id='activity-input-submit'
+            id='category-input-submit'
             type='submit'
             disabled={!this.validate()}/>
         </p>

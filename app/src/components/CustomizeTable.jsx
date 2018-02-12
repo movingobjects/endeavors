@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 
-import fireApp from '../utils/fireApp';
+import firebase from 'firebase/app';
 
 import App from './App';
 import CustomizeTableCell from './CustomizeTableCell';
@@ -22,19 +22,10 @@ export default class CustomizeTable extends React.Component {
 
     super();
 
-    this.initBindings();
     this.initState();
 
   }
 
-  initBindings() {
-
-    this.handleCategoriesValue = this.handleCategoriesValue.bind(this);
-    this.handleValuesValue     = this.handleValuesValue.bind(this);
-    this.handleActivitiesValue = this.handleActivitiesValue.bind(this);
-    this.handleWeightChange    = this.handleWeightChange.bind(this);
-
-  }
   initState() {
 
     this.state = {
@@ -48,29 +39,29 @@ export default class CustomizeTable extends React.Component {
 
   // Event handlers
 
-  handleCategoriesValue(data) {
+  handleCategoriesValue = (data) => {
 
     this.setState({
-      categories: data.val()
+      categories: data.val() ? data.val() : { }
     });
 
   }
-  handleValuesValue(data) {
+  handleValuesValue = (data) => {
 
     this.setState({
-      values: data.val()
+      values: data.val() ? data.val() : { }
     });
 
   }
-  handleActivitiesValue(data) {
+  handleActivitiesValue = (data) => {
 
     this.setState({
-      activities: data.val()
+      activities: data.val() ? data.val() : { }
     });
 
   }
 
-  handleWeightChange(actKey, valLinkKey, weight) {
+  handleWeightChange = (actKey, valLinkKey, weight) => {
 
     weight  = Math.min(3, Math.max(0, weight));
 
@@ -114,11 +105,11 @@ export default class CustomizeTable extends React.Component {
 
   componentDidMount() {
 
-    const userId  = 'default';
+    const userId  = firebase.auth().currentUser.uid;
 
-    this.categoriesRef = fireApp.database().ref(`categories/${userId}`);
-    this.valuesRef     = fireApp.database().ref(`values/${userId}`);
-    this.activitiesRef = fireApp.database().ref(`activities/${userId}`);
+    this.categoriesRef = firebase.database().ref(`categories/${userId}`);
+    this.valuesRef     = firebase.database().ref(`values/${userId}`);
+    this.activitiesRef = firebase.database().ref(`activities/${userId}`);
 
     this.categoriesRef.on('value', this.handleCategoriesValue);
     this.valuesRef.on('value', this.handleValuesValue);
@@ -140,14 +131,23 @@ export default class CustomizeTable extends React.Component {
           values     = this.state.values,
           activities = this.state.activities;
 
-    const hasAllData =
-      !_.isEmpty(categories) &&
-      !_.isEmpty(values) &&
-      !_.isEmpty(activities);
+    const dataLoaded =
+      categories !== undefined &&
+      values !== undefined &&
+      activities !== undefined;
 
-    if (!hasAllData) {
+    const noData =
+      _.isEmpty(categories) &&
+      _.isEmpty(values) &&
+      _.isEmpty(activities);
+
+    if (!dataLoaded) {
       return (
         <p>Loading...</p>
+      );
+    } else if (noData) {
+      return (
+        <p>No data</p>
       );
     }
 

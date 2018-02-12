@@ -21,20 +21,16 @@ export default class Sidebar extends React.Component {
 
     super();
 
-    this.initBindings();
     this.initState();
 
   }
 
-  initBindings() {
-    this.handleItemSelect = this.handleItemSelect.bind(this);
-  }
   initState() { }
 
 
   // Event handlers
 
-  handleItemSelect(itemClass) {
+  handleItemSelect = (itemClass) => {
 
     this.props.onModeChange(itemClass);
 
