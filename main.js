@@ -22,7 +22,7 @@ function initApp() {
       minHeight: 750,
       minWidth: 1100,
       backgroundColor: '#222',
-      titleBarStyle: 'hidden-inset',
+      titleBarStyle: 'hiddenInset',
       webPreferences: {
         nativeWindowOpen: true
       }

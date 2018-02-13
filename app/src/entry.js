@@ -10,6 +10,8 @@ import './styles/style.scss';
 
 import App from './components/App';
 
+const DEBUG_SIGN_OUT = false;
+
 
 initFirebase();
 initApp();
@@ -25,14 +27,16 @@ function initFirebase() {
     messagingSenderId: "589591316736"
   });
 
-  // TODO: remove, this prevents session from continuing after
-  // window is closed
-  //firebase.auth().signOut();
-  //firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
-
 }
 
 function initApp() {
+
+  if (DEBUG_SIGN_OUT) {
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
+    firebase.auth().signOut();
+    window.location = "https://mail.google.com/mail/u/0/?logout&hl=en";
+    return;
+  }
 
   const element   = document.getElementById('app'),
         component = React.createElement(App);
