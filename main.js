@@ -1,6 +1,6 @@
 
-const { app, BrowserWindow } = require('electron');
-const electronReload = require('electron-reload');
+const { app, BrowserWindow } = require('electron'),
+      electronReload         = require('electron-reload');
 
 const server = require('./server');
 

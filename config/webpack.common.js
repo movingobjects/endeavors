@@ -1,7 +1,8 @@
-const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
+
+const path                           = require('path'),
+      CopyWebpackPlugin              = require('copy-webpack-plugin'),
+      HtmlWebpackPlugin              = require('html-webpack-plugin'),
+      HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 
 module.exports = {
 
@@ -74,8 +75,14 @@ module.exports = {
 
   plugins: [
     new CopyWebpackPlugin([
-      { from: 'node_modules/react/dist/react.js', to: 'resources/scripts/vendor/react/' },
-      { from: 'node_modules/react-dom/dist/react-dom.js', to: 'resources/scripts/vendor/react/' },
+      {
+        from: 'node_modules/react/dist/react.js',
+        to: 'resources/scripts/vendor/react/'
+      },
+      {
+        from: 'node_modules/react-dom/dist/react-dom.js',
+        to: 'resources/scripts/vendor/react/'
+      },
     ]),
     new HtmlWebpackPlugin({
       filename: 'index.html',
