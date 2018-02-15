@@ -8,7 +8,7 @@ const PORT = 3007;
 
 let win;
 
-electronReload(__dirname + '/app/build/');
+electronReload(__dirname + '/build/');
 
 server.start(PORT, initApp);
 

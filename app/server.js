@@ -7,7 +7,7 @@ module.exports.start = (port, callback) => {
 
   var appServer = express();
 
-  appServer.use(express.static(path.join(__dirname, 'app', 'build')));
+  appServer.use(express.static(path.join(__dirname, 'build')));
 
   http.createServer(appServer).listen(port, () => {
     if (typeof callback === 'function') callback();
