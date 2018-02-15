@@ -1,33 +1,39 @@
 {
   "name": "endeavors",
-  "version": "0.2.1",
+  "productName": "Endeavors",
+  "version": "0.3.0",
   "description": "Track & evaluate how you spend your time",
-  "main": "main.js",
-  "engines": {
-    "node": "8.1.2",
-    "npm": "5.0.3"
-  },
-  "scripts": {
-    "build": "node ./scripts/build.js",
-    "build:web": "node ./scripts/build.js -b",
-    "dev": "node ./scripts/build.js -w",
-    "dev:web": "node ./scripts/build.js -wb",
-    "start": "node ./scripts/start.js",
-    "package:win": "node ./scripts/package.js -w",
-    "package": "node ./scripts/package.js",
-    "enable-scripts": "chmod +x ./scripts/*",
-    "reinstall": "rm -rf node_modules; npm i"
-  },
+  "contributors": [
+    "Scott Thiessen (http://github.com/sccottt/)",
+    "Alex Burner (http://github.com/alexburner/)"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/sccottt/endeavors#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sccottt/endeavors.git"
   },
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/sccottt/endeavors/issues"
   },
-  "homepage": "https://github.com/sccottt/endeavors#readme",
+  "engines": {
+    "node": "8.1.2",
+    "npm": "5.0.3"
+  },
+  "main": "app/main.js",
+  "scripts": {
+    "build:web": "node ./scripts/build.js -b",
+    "build": "node ./scripts/build.js",
+    "clean": "node ./scripts/clean -spm",
+    "clear-packages": "node ./scripts/clean.js -p",
+    "dev": "node ./scripts/build.js -w",
+    "dev:web": "node ./scripts/build.js -wb",
+    "enable-scripts": "node ./scripts/clean -s",
+    "package": "node ./scripts/package.js",
+    "package:win": "node ./scripts/package.js -w",
+    "reinstall": "node ./scripts/clean.js -m",
+    "start": "node ./scripts/start.js"
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
