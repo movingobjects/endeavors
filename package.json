@@ -1,12 +1,26 @@
 {
   "name": "endeavors",
+  "productName": "Endeavors",
   "version": "0.2.1",
   "description": "Track & evaluate how you spend your time",
-  "main": "main.js",
+  "contributors": [
+    "Scott Thiessen (http://github.com/sccottt/)",
+    "Alex Burner (http://github.com/alexburner/)"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/sccottt/endeavors#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sccottt/endeavors.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sccottt/endeavors/issues"
+  },
   "engines": {
     "node": "8.1.2",
     "npm": "5.0.3"
   },
+  "main": "main.js",
   "scripts": {
     "build": "node ./scripts/build.js",
     "build:web": "node ./scripts/build.js -b",
@@ -18,16 +32,6 @@
     "enable-scripts": "chmod +x ./scripts/*",
     "reinstall": "rm -rf node_modules; npm i"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sccottt/endeavors.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sccottt/endeavors/issues"
-  },
-  "homepage": "https://github.com/sccottt/endeavors#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
