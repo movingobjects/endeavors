@@ -72,13 +72,6 @@ export default class App extends React.Component {
       .catch((error) => console.log(error));
 
   }
-  handleAnonymousLoginClick = () => {
-
-    firebase.auth().signInAnonymously().catch((error) => {
-      console.log(error)
-    });
-
-  }
 
 
   // Methods
@@ -98,8 +91,7 @@ export default class App extends React.Component {
 
     if (!this.state.user) return (
       <LoginView
-        onGoogleLoginClick={this.handleGoogleLoginClick}
-        onAnonymousLoginClick={this.handleAnonymousLoginClick}/>
+        onGoogleLoginClick={this.handleGoogleLoginClick}/>
     );
 
     const isTrack     = this.state.mode === 'track',
