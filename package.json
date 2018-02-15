@@ -20,7 +20,7 @@
     "node": "8.1.2",
     "npm": "5.0.3"
   },
-  "main": "main.js",
+  "main": "app/main.js",
   "scripts": {
     "build:web": "node ./scripts/build.js -b",
     "build": "node ./scripts/build.js",
