@@ -22,15 +22,17 @@
   },
   "main": "main.js",
   "scripts": {
-    "build": "node ./scripts/build.js",
     "build:web": "node ./scripts/build.js -b",
+    "build": "node ./scripts/build.js",
+    "clean": "node ./scripts/clean -spm",
+    "clear-packages": "node ./scripts/clean.js -p",
     "dev": "node ./scripts/build.js -w",
     "dev:web": "node ./scripts/build.js -wb",
-    "start": "node ./scripts/start.js",
-    "package:win": "node ./scripts/package.js -w",
+    "enable-scripts": "node ./scripts/clean -s",
     "package": "node ./scripts/package.js",
-    "enable-scripts": "chmod +x ./scripts/*",
-    "reinstall": "rm -rf node_modules; npm i"
+    "package:win": "node ./scripts/package.js -w",
+    "reinstall": "node ./scripts/clean.js -m",
+    "start": "node ./scripts/start.js"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
