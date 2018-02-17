@@ -12,8 +12,9 @@ import Sidebar from './Sidebar';
 
 import TrackView from './TrackView';
 import EvaluateView from './EvaluateView';
-import CustomizeView from './CustomizeView';
 import SettingsView from './SettingsView';
+
+import CustomizeView from './customize/CustomizeView';
 
 
 // Constants

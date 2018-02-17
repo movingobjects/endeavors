@@ -4,11 +4,12 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 
-import App from './App';
-import CustomizeTable from './CustomizeTable';
-import CustomizeCategoryForm from './CustomizeCategoryForm';
-import CustomizeValueForm from './CustomizeValueForm';
-import CustomizeActivityForm from './CustomizeActivityForm';
+import App from '../App';
+
+import Table from './Table';
+import CategoryForm from './CategoryForm';
+import ValueForm from './ValueForm';
+import ActivityForm from './ActivityForm';
 
 
 // Constants
@@ -56,12 +57,12 @@ export default class CustomizeView extends React.Component {
         <article>
 
           <h2>Edit Activities</h2>
-          <CustomizeTable />
+          <Table />
 
           <h2>Add new</h2>
-          <CustomizeCategoryForm />
-          <CustomizeValueForm />
-          <CustomizeActivityForm />
+          <CategoryForm />
+          <ValueForm />
+          <ActivityForm />
 
         </article>
 
