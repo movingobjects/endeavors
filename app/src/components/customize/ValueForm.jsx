@@ -29,8 +29,6 @@ export default class ValueForm extends React.Component {
   initState() {
 
     this.state = {
-      categories: undefined,
-      valCategory: '',
       valLabel: ''
     }
 
@@ -39,18 +37,6 @@ export default class ValueForm extends React.Component {
 
   // Event handlers
 
-  handleCategoriesValue = (data) => {
-
-    const categories     = data.val() ? data.val() : { },
-          hasValCategory = this.state.valCategory && this.state.valCategory.length,
-          valCategory    = hasValCategory ? this.state.valCategory : _.keys(categories)[0];
-
-    this.setState({
-      categories: categories,
-      valCategory: valCategory
-    });
-
-  }
   handleInputChange = (e) => {
 
     this.setState({
@@ -65,7 +51,6 @@ export default class ValueForm extends React.Component {
     if (this.validate()) {
 
       const value  = {
-        category_key: this.state.valCategory,
         label: this.state.valLabel
       };
 
@@ -94,15 +79,11 @@ export default class ValueForm extends React.Component {
 
   validate() {
 
-    const hasCategory =
-      this.state.valCategory &&
-      this.state.valCategory.length;
-
     const hasLabel =
       this.state.valLabel &&
       this.state.valLabel.length;
 
-    return hasCategory && hasLabel;
+    return hasLabel;
 
   }
 
@@ -113,16 +94,7 @@ export default class ValueForm extends React.Component {
 
     const userId  = firebase.auth().currentUser.uid;
 
-    this.categoriesRef = firebase.database().ref(`categories/${userId}`);
     this.valuesRef     = firebase.database().ref(`values/${userId}`);
-
-    this.categoriesRef.on('value', this.handleCategoriesValue);
-
-  }
-
-  componentWillUnmount() {
-
-    if (this.categoriesRef) this.categoriesRef.off('value', this.handleCategoriesValue);
 
   }
 
@@ -134,29 +106,6 @@ export default class ValueForm extends React.Component {
         onSubmit={this.handleSubmit}>
 
         <h3>Add Value</h3>
-
-        <p>
-          <label
-            htmlFor='value-select-category'>
-            Category
-          </label>
-        </p>
-
-        <p>
-          <select
-            id='value-select-category'
-            name='valCategory'
-            value={this.state.valCategory}
-            onChange={this.handleInputChange}>
-            {_.map(this.state.categories, (category, catKey) => (
-              <option
-                key={catKey}
-                value={catKey}>
-                {category.label}
-              </option>
-            ))}
-          </select>
-        </p>
 
         <p>
           <label
