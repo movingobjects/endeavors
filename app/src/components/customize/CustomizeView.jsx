@@ -7,7 +7,6 @@ import * as classNames from 'classnames';
 import App from '../App';
 
 import Table from './Table';
-import CategoryForm from './CategoryForm';
 import ValueForm from './ValueForm';
 import ActivityForm from './ActivityForm';
 
@@ -60,7 +59,6 @@ export default class CustomizeView extends React.Component {
           <Table />
 
           <h2>Add new</h2>
-          <CategoryForm />
           <ValueForm />
           <ActivityForm />
 
