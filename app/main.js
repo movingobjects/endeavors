@@ -4,11 +4,12 @@ const { app, BrowserWindow } = require('electron'),
 
 const server = require('./server');
 
-const PORT = 3007;
+const PORT     = 3007,
+      PATH_WIN = `http://localhost:${PORT}`;
 
 let win;
 
-electronReload(__dirname + '/build/');
+electronReload(PATH_WIN);
 
 server.start(PORT, initApp);
 
@@ -28,7 +29,7 @@ function initApp() {
       }
     });
 
-    win.loadURL(`http://localhost:${PORT}`);
+    win.loadURL(PATH_WIN);
 
   });
 
