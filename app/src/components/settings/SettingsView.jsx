@@ -4,7 +4,7 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 
-import App from './App';
+import App from '../App';
 
 
 // Constants
