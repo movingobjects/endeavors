@@ -4,8 +4,8 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 
-import App from './App';
-import SidebarItem from './SidebarItem';
+import App from '../App';
+import Item from './Item';
 
 
 // Constants
@@ -13,7 +13,7 @@ import SidebarItem from './SidebarItem';
 
 // Component
 
-export default class Sidebar extends React.Component {
+export default class SidebarView extends React.Component {
 
   // Constructor
 
@@ -50,14 +50,14 @@ export default class Sidebar extends React.Component {
         <ul
           className='main-nav'>
 
-          <SidebarItem
+          <Item
             label='Track'
             className='track'
             icon='check_box'
             selected={this.props.mode === 'track'}
             onSelect={this.handleItemSelect}/>
 
-          <SidebarItem
+          <Item
             label='Evaluate'
             className='evaluate'
             icon='timeline'
@@ -69,14 +69,14 @@ export default class Sidebar extends React.Component {
         <ul
           className='sub-nav'>
 
-          <SidebarItem
+          <Item
             label='Customize'
             className='customize'
             icon='fingerprint'
             selected={this.props.mode === 'customize'}
             onSelect={this.handleItemSelect}/>
 
-          <SidebarItem
+          <Item
             label='Settings'
             className='settings'
             icon='settings_applications'

@@ -4,10 +4,7 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 
-import App from './App';
-import CustomizeTable from './CustomizeTable';
-import CustomizeValueForm from './CustomizeValueForm';
-import CustomizeActivityForm from './CustomizeActivityForm';
+import App from '../App';
 
 
 // Constants

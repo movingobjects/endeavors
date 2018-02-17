@@ -4,7 +4,12 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 
-import App from './App';
+import App from '../App';
+
+import Table from './Table';
+import CategoryForm from './CategoryForm';
+import ValueForm from './ValueForm';
+import ActivityForm from './ActivityForm';
 
 
 // Constants
@@ -12,7 +17,7 @@ import App from './App';
 
 // Component
 
-export default class TrackView extends React.Component {
+export default class CustomizeView extends React.Component {
 
   // Constructor
 
@@ -38,7 +43,7 @@ export default class TrackView extends React.Component {
   render() {
 
     const classSection = classNames({
-      'track': true
+      'customize': true
     })
 
     return (
@@ -46,12 +51,18 @@ export default class TrackView extends React.Component {
         className={classSection}>
 
         <header>
-          <h2>Track</h2>
+          <h2>Customize</h2>
         </header>
 
         <article>
 
-          <h2>To do.</h2>
+          <h2>Edit Activities</h2>
+          <Table />
+
+          <h2>Add new</h2>
+          <CategoryForm />
+          <ValueForm />
+          <ActivityForm />
 
         </article>
 

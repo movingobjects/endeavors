@@ -7,13 +7,13 @@ import firebase from 'firebase/app';
 
 import { maths, net } from 'varyd-utils';
 
-import LoginView from './LoginView';
-import Sidebar from './Sidebar';
+import LoginView from './login/LoginView';
+import SidebarView from './sidebar/SidebarView';
 
-import TrackView from './TrackView';
-import EvaluateView from './EvaluateView';
-import CustomizeView from './CustomizeView';
-import SettingsView from './SettingsView';
+import TrackView from './track/TrackView';
+import EvaluateView from './evaluate/EvaluateView';
+import CustomizeView from './customize/CustomizeView';
+import SettingsView from './settings/SettingsView';
 
 
 // Constants
@@ -104,7 +104,7 @@ export default class App extends React.Component {
       <div
         className='wrap-all'>
 
-        <Sidebar
+        <SidebarView
           mode={this.state.mode}
           onModeChange={this.handleModeChange}/>
 

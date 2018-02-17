@@ -4,7 +4,7 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 
-import App from './App';
+import App from '../App';
 
 
 // Constants
@@ -12,7 +12,7 @@ import App from './App';
 
 // Component
 
-export default class EvaluateView extends React.Component {
+export default class TrackView extends React.Component {
 
   // Constructor
 
@@ -38,7 +38,7 @@ export default class EvaluateView extends React.Component {
   render() {
 
     const classSection = classNames({
-      'evaluate': true
+      'track': true
     })
 
     return (
@@ -46,7 +46,7 @@ export default class EvaluateView extends React.Component {
         className={classSection}>
 
         <header>
-          <h2>Evaluate</h2>
+          <h2>Track</h2>
         </header>
 
         <article>

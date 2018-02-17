@@ -5,8 +5,8 @@ import * as React from 'react';
 
 import firebase from 'firebase/app';
 
-import App from './App';
-import CustomizeTableCell from './CustomizeTableCell';
+import App from '../App';
+import TableCell from './TableCell';
 
 
 // Constants
@@ -14,7 +14,7 @@ import CustomizeTableCell from './CustomizeTableCell';
 
 // Component
 
-export default class CustomizeTable extends React.Component {
+export default class Table extends React.Component {
 
   // Constructor
 
@@ -240,7 +240,7 @@ export default class CustomizeTable extends React.Component {
                   ));
 
                   return (
-                    <CustomizeTableCell
+                    <TableCell
                       key={valKey}
                       actKey={actKey}
                       activity={activity}

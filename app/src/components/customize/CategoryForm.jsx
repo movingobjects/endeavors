@@ -6,7 +6,7 @@ import * as classNames from 'classnames';
 
 import firebase from 'firebase/app';
 
-import App from './App';
+import App from '../App';
 
 
 // Constants
@@ -14,7 +14,7 @@ import App from './App';
 
 // Component
 
-export default class CustomizeCategoryForm extends React.Component {
+export default class CategoryForm extends React.Component {
 
   // Constructor
 

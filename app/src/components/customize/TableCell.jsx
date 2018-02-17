@@ -4,7 +4,7 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 
-import App from './App';
+import App from '../App';
 
 
 // Constants
@@ -12,7 +12,7 @@ import App from './App';
 
 // Component
 
-export default class CustomizeTableCell extends React.Component {
+export default class TableCell extends React.Component {
 
   // Constructor
 
