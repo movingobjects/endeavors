@@ -4,17 +4,17 @@
   "version": "0.3.2",
   "description": "Track & evaluate how you spend your time",
   "contributors": [
-    "Scott Thiessen (http://github.com/sccottt/)",
+    "Scott Thiessen (http://github.com/movingobjects/)",
     "Alex Burner (http://github.com/alexburner/)"
   ],
   "license": "ISC",
-  "homepage": "https://github.com/sccottt/endeavors#readme",
+  "homepage": "https://github.com/movingobjects/endeavors#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sccottt/endeavors.git"
+    "url": "git+https://github.com/movingobjects/endeavors.git"
   },
   "bugs": {
-    "url": "https://github.com/sccottt/endeavors/issues"
+    "url": "https://github.com/movingobjects/endeavors/issues"
   },
   "engines": {
     "node": "8.1.2",
