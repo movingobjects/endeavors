@@ -29,7 +29,6 @@ export default class Table extends React.Component {
   initState() {
 
     this.state = {
-      categories: undefined,
       values: undefined,
       activities: undefined
     }
@@ -39,13 +38,6 @@ export default class Table extends React.Component {
 
   // Event handlers
 
-  handleCategoriesValue = (data) => {
-
-    this.setState({
-      categories: data.val() ? data.val() : { }
-    });
-
-  }
   handleValuesValue = (data) => {
 
     this.setState({
@@ -84,22 +76,6 @@ export default class Table extends React.Component {
 
   }
 
-  getValuesByCategoryKey(catKey, values) {
-
-    const obj = {};
-
-    _.each(values, (value, valKey) => {
-
-      if (value.category_key === catKey) {
-        obj[valKey] = value;
-      }
-
-    });
-
-    return obj;
-
-  }
-
 
   // React
 
@@ -107,11 +83,9 @@ export default class Table extends React.Component {
 
     const userId  = firebase.auth().currentUser.uid;
 
-    this.categoriesRef = firebase.database().ref(`categories/${userId}`);
     this.valuesRef     = firebase.database().ref(`values/${userId}`);
     this.activitiesRef = firebase.database().ref(`activities/${userId}`);
 
-    this.categoriesRef.on('value', this.handleCategoriesValue);
     this.valuesRef.on('value', this.handleValuesValue);
     this.activitiesRef.on('value', this.handleActivitiesValue);
 
@@ -119,7 +93,6 @@ export default class Table extends React.Component {
 
   componentWillUnmount() {
 
-    if (this.categoriesRef) this.categoriesRef.off('value', this.handleCategoriesValue);
     if (this.valuesRef) this.valuesRef.off('value', this.handleValuesValue);
     if (this.activitiesRef) this.activitiesRef.off('value', this.handleActivitiesValue);
 
@@ -127,17 +100,14 @@ export default class Table extends React.Component {
 
   render() {
 
-    const categories = this.state.categories,
-          values     = this.state.values,
+    const values     = this.state.values,
           activities = this.state.activities;
 
     const dataLoaded =
-      categories !== undefined &&
       values !== undefined &&
       activities !== undefined;
 
     const noData =
-      _.isEmpty(categories) &&
       _.isEmpty(values) &&
       _.isEmpty(activities);
 
@@ -157,55 +127,27 @@ export default class Table extends React.Component {
         className='customize-table'>
 
         <thead>
-          <tr>
-            <th />
-
-            {_.map(categories, (category, key) => {
-
-              if (!category) return null;
-
-              let catVals = this.getValuesByCategoryKey(key, values),
-                  count   = _.size(catVals);
-
-              if (count) {
-                return (
-                  <th
-                    key={key}
-                    colSpan={count} >
-                    {category.label}
-                  </th>
-                );
-              }
-
-            })}
-          </tr>
 
           <tr>
 
             <th />
 
-            {_.map(categories, (category, catKey) => {
+            {_.map(values, (value, valKey) => (
+              <th
+                key={valKey}>
 
-              let catVals = this.getValuesByCategoryKey(catKey, values);
+                {value.label}
 
-              return _.map(catVals, (value, valKey) => (
-                <th
-                  key={valKey}>
+                &nbsp;
 
-                  {value.label}
+                <a
+                  className='remove-btn'
+                  onClick={() => this.deleteValue(valKey)}>
+                  &times;
+                </a>
 
-                  &nbsp;
-
-                  <a
-                    className='remove-btn'
-                    onClick={() => this.deleteValue(valKey)}>
-                    &times;
-                  </a>
-
-                </th>
-              ));
-
-            })}
+              </th>
+            ))}
 
           </tr>
 
@@ -229,26 +171,20 @@ export default class Table extends React.Component {
 
               </th>
 
-              {_.map(categories, (category, catKey) => {
+              {_.map(values, (value, valKey) => {
 
-                let catVals = this.getValuesByCategoryKey(catKey, values);
+                const valLink = _.find(activity.values, (valLink) => (
+                  valLink.value_key === valKey
+                ));
 
-                return _.map(catVals, (value, valKey) => {
-
-                  const valLink = _.find(activity.values, (valLink) => (
-                    valLink.value_key === valKey
-                  ));
-
-                  return (
-                    <TableCell
-                      key={valKey}
-                      actKey={actKey}
-                      activity={activity}
-                      valLinkKey={valKey}
-                      onWeightChange={this.handleWeightChange} />
-                  );
-
-                });
+                return (
+                  <TableCell
+                    key={valKey}
+                    actKey={actKey}
+                    activity={activity}
+                    valLinkKey={valKey}
+                    onWeightChange={this.handleWeightChange} />
+                );
 
               })}
 
