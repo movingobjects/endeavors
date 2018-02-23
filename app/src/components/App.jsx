@@ -5,8 +5,6 @@ import * as React from 'react';
 import * as _ from 'lodash';
 import firebase from 'firebase/app';
 
-import { maths, net } from 'varyd-utils';
-
 import LoginView from './login/LoginView';
 import SidebarView from './sidebar/SidebarView';
 
