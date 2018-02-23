@@ -38,7 +38,7 @@ function initApp() {
     return;
   }
 
-  const element   = document.getElementById('app'),
+  const element   = document.body.appendChild(document.createElement('div')),
         component = React.createElement(App);
 
   ReactDOM.render(component, element);

@@ -4,6 +4,8 @@ const path                           = require('path'),
       HtmlWebpackPlugin              = require('html-webpack-plugin'),
       HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 
+const appTitle = process.env.npm_package_productName || process.env.npm_package_name;
+
 module.exports = {
 
   entry: {
@@ -86,7 +88,7 @@ module.exports = {
     ]),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'app/src/index.html'
+      title: appTitle
     }),
     new HtmlWebpackIncludeAssetsPlugin({
       assets: [
